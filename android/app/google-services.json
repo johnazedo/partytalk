@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "664356699458",
+    "project_id": "talk-d6223",
+    "storage_bucket": "talk-d6223.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:664356699458:android:0e33029c40e0acf56f5cdb",
+        "android_client_info": {
+          "package_name": "com.lemonade.talk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "664356699458-u8k3u6cq82vccbpovcekck4kdfmroq0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq64Je42W0Y3K-sYyxpQTuwfwc7W5tSXc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "664356699458-u8k3u6cq82vccbpovcekck4kdfmroq0k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
