@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:talk/ui/auth/auth_viewmodel.dart';
+import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/strings.dart';
+import 'package:talk/ui/constants/styles.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -15,19 +17,35 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Center(
-              child: AnimatedBuilder(
-                  animation: vm,
-                  builder: (context, child) {
-                    return Text("User : ${vm.nameUser.value}");
-                  })),
-          Center(
+      body: Padding(
+        padding: const EdgeInsets.all(Dimens.screenPadding),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              Strings.appName,
+              style: TextStyles.titleApp,
+            ),
+            const Text(
+              Strings.appDescription,
+              style: TextStyles.descriptionApp,
+            ),
+
+            Center(
               child: ElevatedButton(
-                  onPressed: vm.signIn,
-                  child: const Text(Strings.GOOGLE_TEXT_BUTTON)))
-        ],
+                child: const Text(Strings.googleTextButton),
+                onPressed: vm.signIn,
+              ),
+            ),
+
+            Center(
+                child: AnimatedBuilder(
+                    animation: vm,
+                    builder: (context, child) {
+                      return Text("Log: User = ${vm.nameUser.value}");
+                    })),
+          ],
+        ),
       ),
     );
   }

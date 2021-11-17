@@ -16,10 +16,11 @@ class MyApp extends StatelessWidget {
     Firebase.initializeApp();
 
     return MaterialApp(
-      title: Strings.APP_NAME,
+      title: Strings.appName,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'Inter'
       ),
       home: const AuthScreen(),
     );
