@@ -44,9 +44,9 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.lemonade.talk.talk"
-        minSdkVersion 16
-        targetSdkVersion 30
+        applicationId "com.lemonade.talk"
+        minSdkVersion 23
+        targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

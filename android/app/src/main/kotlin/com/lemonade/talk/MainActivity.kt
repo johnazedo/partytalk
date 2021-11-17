@@ -1,4 +1,4 @@
-package com.lemonade.talk.talk
+package com.lemonade.talk
 
 import io.flutter.embedding.android.FlutterActivity
 
