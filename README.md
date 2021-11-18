@@ -1,4 +1,4 @@
-# Talk
+# PartyTalk
 
 
 <img src="https://user-images.githubusercontent.com/19677206/142435408-e99359bb-97ba-4ef5-9481-461a2362e955.png" width="250" height="531" />
