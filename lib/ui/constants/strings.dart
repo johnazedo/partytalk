@@ -11,4 +11,6 @@ class Strings {
 
   // ChatsScreen
   static const chats = "Conversas";
+  static const events = "Eventos";
+  static const search = "Pesquisar";
 }

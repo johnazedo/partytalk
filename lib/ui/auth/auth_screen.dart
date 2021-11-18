@@ -5,7 +5,6 @@ import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/strings.dart';
 import 'package:talk/ui/constants/styles.dart';
-
 import 'components/google_button.dart';
 
 class AuthScreen extends StatelessWidget {
