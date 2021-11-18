@@ -1,4 +1,4 @@
 
 class Dimens {
-  static const screenPadding = 16.0;
+  static const screenPadding = 24.0;
 }

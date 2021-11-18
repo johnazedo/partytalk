@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:talk/ui/auth/auth_screen.dart';
 import 'package:talk/ui/auth/auth_viewmodel.dart';
+import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/strings.dart';
 
 void main() {
@@ -16,7 +17,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Firebase.initializeApp();
-
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -33,6 +33,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          backgroundColor: CustomColors.backgroundColor,
+          colorScheme: Theme.of(context).colorScheme.copyWith(secondary: CustomColors.secondaryColor),
           fontFamily: Strings.fontFamily,
         ),
         home: const AuthScreen(),
