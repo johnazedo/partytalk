@@ -1,5 +1,9 @@
 # Talk
 
+
+<img src="https://user-images.githubusercontent.com/19677206/142435408-e99359bb-97ba-4ef5-9481-461a2362e955.png" width="250" height="531" />
+
+
 O Talk é um aplicativo para envio de mensagens utilizando as contas do Google. Para isso é necessário a integração com o Firebase.
 
 O projeto GoogleChat foi craido para estudar os seguintes tópicos:
