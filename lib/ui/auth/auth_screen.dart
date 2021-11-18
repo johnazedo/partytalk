@@ -20,7 +20,6 @@ class AuthScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
-
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(

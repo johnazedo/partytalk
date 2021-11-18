@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:talk/ui/auth/auth_screen.dart';
 import 'package:talk/ui/auth/auth_viewmodel.dart';
+import 'package:talk/ui/chats/chats_screen.dart';
+import 'package:talk/ui/chats/chats_viewmodel.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/strings.dart';
 
@@ -26,7 +28,8 @@ class MyApp extends StatelessWidget {
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AuthViewModel())
+        ChangeNotifierProvider(create: (_) => AuthViewModel()),
+        ChangeNotifierProvider(create: (_) => ChatsViewModel())
       ],
       child: MaterialApp(
         title: Strings.appName,
@@ -37,7 +40,7 @@ class MyApp extends StatelessWidget {
           colorScheme: Theme.of(context).colorScheme.copyWith(secondary: CustomColors.secondaryColor),
           fontFamily: Strings.fontFamily,
         ),
-        home: const AuthScreen(),
+        home: const ChatsScreen(),
       ),
     );
   }
