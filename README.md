@@ -1,7 +1,7 @@
 # PartyTalk
 
 
-<img src="https://user-images.githubusercontent.com/19677206/142435408-e99359bb-97ba-4ef5-9481-461a2362e955.png" width="250" height="531" />
+<img src="https://user-images.githubusercontent.com/19677206/142435408-e99359bb-97ba-4ef5-9481-461a2362e955.png" width="250" height="531" /><img src="https://user-images.githubusercontent.com/19677206/142513496-d2243764-3ec3-479a-88f4-af1d1e7e9b56.png"  width="250" height="531" />
 
 
 O Talk é um aplicativo para envio de mensagens utilizando as contas do Google. Para isso é necessário a integração com o Firebase.
