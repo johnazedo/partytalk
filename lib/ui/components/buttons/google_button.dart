@@ -5,9 +5,9 @@ import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/strings.dart';
 
 class GoogleButton extends StatelessWidget {
-  const GoogleButton({Key? key, required this.onClickButton}) : super(key: key);
+  const GoogleButton({Key? key, required this.onPressed}) : super(key: key);
 
-  final VoidCallback onClickButton;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class GoogleButton extends StatelessWidget {
       child: ElevatedButton.icon(
         label: const Text(Strings.googleTextButton),
         icon: const Icon(FontAwesomeIcons.google),
-        onPressed: onClickButton,
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           primary: CustomColors.accentGray,
           onPrimary: CustomColors.solidBlack,
