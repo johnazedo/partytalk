@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:talk/ui/constants/colors.dart';
+import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/strings.dart';
 
 class GoogleButton extends StatelessWidget {
@@ -19,9 +20,9 @@ class GoogleButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           primary: CustomColors.accentGray,
           onPrimary: CustomColors.solidBlack,
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(Dimens.buttonLabelPadding),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(Dimens.buttonBorderRadius),
           ),
         ),
       ),

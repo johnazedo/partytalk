@@ -20,7 +20,7 @@ class ChatsScreen extends StatelessWidget {
       backgroundColor: CustomColors.backgroundColor,
       bottomNavigationBar: const CustomBottomNavigationBar(),
       floatingActionButton: const ExtendedFloatingActionButton(),
-      appBar: getAppBar(),
+      appBar: getAppBar(context),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: Dimens.screenPadding),
         child: ListView.builder(

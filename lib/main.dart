@@ -8,6 +8,7 @@ import 'package:talk/ui/chats/chats_screen.dart';
 import 'package:talk/ui/chats/chats_viewmodel.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/strings.dart';
+import 'package:talk/ui/username/username_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
           colorScheme: Theme.of(context).colorScheme.copyWith(secondary: CustomColors.secondaryColor),
           fontFamily: Strings.fontFamily,
         ),
-        home: const ChatsScreen(),
+        home: const UsernameScreen(),
       ),
     );
   }

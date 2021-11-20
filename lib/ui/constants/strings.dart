@@ -13,4 +13,8 @@ class Strings {
   static const chats = "Conversas";
   static const events = "Eventos";
   static const search = "Pesquisar";
+
+  // UsernameScreen
+  static const welcomeMessage = "Bem vindo João Pedro Limão :tada:. Por favor digite o seu nome de usuário:";
+  static const createUser = "Criar usuário";
 }
