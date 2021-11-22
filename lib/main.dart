@@ -9,6 +9,7 @@ import 'package:talk/ui/chats/chats_viewmodel.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/strings.dart';
 import 'package:talk/ui/username/username_screen.dart';
+import 'package:talk/ui/username/username_viewmodel.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
-        ChangeNotifierProvider(create: (_) => ChatsViewModel())
+        ChangeNotifierProvider(create: (_) => ChatsViewModel()),
+        ChangeNotifierProvider(create: (_) => UsernameViewModelFactory.make()),
       ],
       child: MaterialApp(
         title: Strings.appName,

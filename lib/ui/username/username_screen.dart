@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 import 'package:talk/ui/components/buttons/pink_button.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/strings.dart';
 import 'package:talk/ui/constants/styles.dart';
+import 'package:talk/ui/username/username_viewmodel.dart';
 
 class UsernameScreen extends StatefulWidget {
   const UsernameScreen({Key? key}) : super(key: key);
@@ -16,9 +18,9 @@ class _UsernameScreenState extends State<UsernameScreen> {
 
   final TextEditingController _controller = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
+    final vm = context.watch<UsernameViewModel>();
     var statusBarHeight = MediaQuery.of(context).padding.top;
     return Scaffold(
       backgroundColor: CustomColors.accentGray,
@@ -53,7 +55,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
             ),
             PinkButton(
               text: Strings.createUser,
-              onPressed: () {},
+              onPressed: () => vm.createUser(_controller.text.toString()),
             ),
           ],
         ),
