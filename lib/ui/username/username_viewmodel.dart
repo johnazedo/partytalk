@@ -1,30 +1,21 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:talk/data/services/username_service.dart';
-import 'package:talk/data/repositories/username_repository.dart';
+import 'package:talk/domain/usecases/is_valid_username.dart';
 
 class UsernameViewModel extends ChangeNotifier {
-  final UsernameRepository repository;
-  UsernameViewModel({ required this.repository });
+  final IsValidUsernameUseCase isValidUsernameUseCase;
+
+  UsernameViewModel({
+    required this.isValidUsernameUseCase
+  });
 
   var validUsername = ValueNotifier<bool>(false);
 
-  void createUser(String? username) async {
-    if(username != null) {
-      validUsername.value = await repository.usernameIsValid(username);
-      if (validUsername.value) {
-        //CreateUserFunction
-      }
+  void createUser(String? username) {
+    validUsername.value = isValidUsernameUseCase(username);
+    if (validUsername.value) {
+      // CreateUser
     }
   }
 }
 
-abstract class UsernameViewModelFactory {
-  static UsernameViewModel make(){
-    return UsernameViewModel(
-      repository: UsernameRepositoryImpl(
-          service: UsernameServiceImpl()
-      )
-    );
-  }
-}
+

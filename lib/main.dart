@@ -2,14 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:talk/ui/auth/auth_screen.dart';
 import 'package:talk/ui/auth/auth_viewmodel.dart';
-import 'package:talk/ui/chats/chats_screen.dart';
 import 'package:talk/ui/chats/chats_viewmodel.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/strings.dart';
+import 'package:talk/ui/di/username_factory.dart';
 import 'package:talk/ui/username/username_screen.dart';
-import 'package:talk/ui/username/username_viewmodel.dart';
 
 void main() {
   runApp(const MyApp());
