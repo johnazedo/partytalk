@@ -1,20 +1,18 @@
-import 'package:talk/domain/repositories/valid_username.dart';
+import 'package:talk/domain/repositories/user_repository.dart';
 
 abstract class IsValidUsernameUseCase {
-  bool call(String? username);
+  Future<bool> call(String? username);
 }
 
 class IsValidUsernameUseCaseImpl implements IsValidUsernameUseCase {
-  final IsValidUsernameRepository repository;
+  final UserRepository repository;
   IsValidUsernameUseCaseImpl({ required this.repository });
 
   @override
-  bool call(String? username) {
-    var result = false;
+  Future<bool> call(String? username) async {
     if(username == null){
-      return result;
+      return false;
     }
-    repository(username).then((value) => result=value);
-    return result;
+    return repository.isValidUsername(username);
   }
 }
