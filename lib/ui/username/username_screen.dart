@@ -43,7 +43,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
                 AnimatedBuilder(
                   animation: vm,
                   builder: (BuildContext context, Widget? child) {
-                    var color = vm.validUsername.value ? CustomColors.darkSecondaryColor : Colors.red;
+                    var color = vm.isUsernameInvalid() ?  Colors.red:CustomColors.darkSecondaryColor;
                     return TextField(
                       controller: _controller,
                       cursorColor: CustomColors.darkSecondaryColor,
@@ -74,7 +74,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
                   ),
                   builder: (BuildContext context, Widget? child) {
                    return Container(
-                     child: vm.validUsername.value ? null : child,
+                     child: vm.isUsernameInvalid() ? child : null,
                    );
                   },
                 )

@@ -1,8 +1,9 @@
+import 'package:talk/domain/create_use_state.dart';
 import 'package:talk/domain/entities/user.dart';
 import 'package:talk/domain/repositories/user_repository.dart';
 
 abstract class CreateUserUseCase {
-  Future<bool> call(User user);
+  Future<CreateUserState> call(User user);
 }
 
 class CreateUserUseCaseImpl implements CreateUserUseCase {
@@ -10,11 +11,17 @@ class CreateUserUseCaseImpl implements CreateUserUseCase {
   CreateUserUseCaseImpl({required this.repository});
 
   @override
-  Future<bool> call(User user) async{
-    var userAlreadyAdded = await repository.userAlreadyAdded(user);
-    if(!userAlreadyAdded){
-      return await repository.createUser(user);
+  Future<CreateUserState> call(User user) async{
+    var usernameValid = await repository.isValidUsername(user.username);
+    if(!usernameValid) {
+      return CreateUserState.USERNAME_INVALID;
     }
-    return false;
+
+    var userCreated = await repository.createUser(user);
+    if(userCreated) {
+      return CreateUserState.USER_CREATED;
+    }
+
+    return CreateUserState.DEFAULT;
   }
 }
