@@ -1,4 +1,4 @@
-import 'package:talk/data/services/username_service.dart';
+import 'package:talk/data/services/user.dart';
 import 'package:talk/domain/repositories/valid_username.dart';
 
 class IsValidUsernameRepositoryImpl implements IsValidUsernameRepository {

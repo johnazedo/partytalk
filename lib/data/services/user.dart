@@ -4,7 +4,7 @@ abstract class UserService {
   Future searchUserByUsername(String username);
 }
 
-class UsernameServiceImpl implements UserService {
+class UserServiceImpl implements UserService {
   @override
   Future<QuerySnapshot> searchUserByUsername(String username) {
     return FirebaseFirestore.instance
