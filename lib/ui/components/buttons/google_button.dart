@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:talk/ui/constants/colors.dart';
+import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/strings.dart';
 
 class GoogleButton extends StatelessWidget {
-  const GoogleButton({Key? key, required this.onClickButton}) : super(key: key);
+  const GoogleButton({Key? key, required this.onPressed}) : super(key: key);
 
-  final VoidCallback onClickButton;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +16,13 @@ class GoogleButton extends StatelessWidget {
       child: ElevatedButton.icon(
         label: const Text(Strings.googleTextButton),
         icon: const Icon(FontAwesomeIcons.google),
-        onPressed: onClickButton,
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           primary: CustomColors.accentGray,
           onPrimary: CustomColors.solidBlack,
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(Dimens.buttonLabelPadding),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(Dimens.buttonBorderRadius),
           ),
         ),
       ),

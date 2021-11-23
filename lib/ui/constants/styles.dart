@@ -31,4 +31,10 @@ class TextStyles {
     fontWeight: FontWeight.w600,
     color: CustomColors.customBlack,
   );
+
+  static const topMessageText = TextStyle(
+    fontSize: 20.0,
+    fontWeight: FontWeight.w600,
+    color: CustomColors.customBlack
+  );
 }

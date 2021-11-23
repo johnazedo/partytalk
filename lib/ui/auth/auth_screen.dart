@@ -5,7 +5,7 @@ import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/strings.dart';
 import 'package:talk/ui/constants/styles.dart';
-import 'components/google_button.dart';
+import '../components/buttons/google_button.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -35,7 +35,8 @@ class AuthScreen extends StatelessWidget {
                 ),
               ),
               const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: Dimens.screenPadding),
+                padding: EdgeInsets.symmetric(
+                    vertical: 16.0, horizontal: Dimens.screenPadding),
                 child: Text(
                   Strings.appDescription,
                   style: TextStyles.descriptionApp,
@@ -45,9 +46,12 @@ class AuthScreen extends StatelessWidget {
           ),
 
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: Dimens.screenPadding, vertical: 40.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: Dimens.screenPadding,
+              vertical: Dimens.bottomScreenToButtonPadding,
+            ),
             child: GoogleButton(
-              onClickButton: vm.signIn,
+              onPressed: vm.signIn,
             ),
           ),
 

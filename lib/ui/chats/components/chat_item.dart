@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:talk/ui/chats/chat_uimodel.dart';
 import 'package:talk/ui/constants/styles.dart';
 
-import 'badges.dart';
+import 'chat_badge.dart';
 
 class ChatItem extends StatelessWidget {
   final ChatUIModel chatUIModel;
