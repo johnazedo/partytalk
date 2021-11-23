@@ -12,7 +12,7 @@ class UsernameViewModel extends ChangeNotifier {
     required this.createUserUseCase,
   });
 
-  var validUsername = ValueNotifier<bool>(false);
+  var validUsername = ValueNotifier<bool>(true);
   var userCreated = ValueNotifier<bool>(false);
 
   void createUser(String? username) async {
@@ -29,6 +29,7 @@ class UsernameViewModel extends ChangeNotifier {
       userCreated.value = await createUserUseCase(user);
     }
 
+    notifyListeners();
   }
 }
 

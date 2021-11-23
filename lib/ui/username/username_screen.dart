@@ -40,17 +40,44 @@ class _UsernameScreenState extends State<UsernameScreen> {
                   Strings.welcomeMessage,
                   style: TextStyles.topMessageText,
                 ),
-                TextField(
-                  controller: _controller,
-                  cursorColor: CustomColors.darkSecondaryColor,
-                  decoration: const InputDecoration(
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: CustomColors.darkSecondaryColor
+                AnimatedBuilder(
+                  animation: vm,
+                  builder: (BuildContext context, Widget? child) {
+                    var color = vm.validUsername.value ? CustomColors.darkSecondaryColor : Colors.red;
+                    return TextField(
+                      controller: _controller,
+                      cursorColor: CustomColors.darkSecondaryColor,
+                      decoration: InputDecoration(
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: color
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                AnimatedBuilder(
+                  animation: vm,
+                  child: const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Text(
+                        Strings.usernameIsNotValid,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.red
+                        ),
                       ),
                     ),
                   ),
-                ),
+                  builder: (BuildContext context, Widget? child) {
+                   return Container(
+                     child: vm.validUsername.value ? null : child,
+                   );
+                  },
+                )
               ],
             ),
             PinkButton(
