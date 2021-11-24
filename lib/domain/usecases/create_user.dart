@@ -1,4 +1,4 @@
-import 'package:talk/domain/create_use_state.dart';
+import 'package:talk/domain/states/create_user_state.dart';
 import 'package:talk/domain/entities/user.dart';
 import 'package:talk/domain/repositories/user_repository.dart';
 
@@ -16,12 +16,7 @@ class CreateUserUseCaseImpl implements CreateUserUseCase {
     if(!usernameValid) {
       return CreateUserState.USERNAME_INVALID;
     }
-
-    var userCreated = await repository.createUser(user);
-    if(userCreated) {
-      return CreateUserState.USER_CREATED;
-    }
-
-    return CreateUserState.DEFAULT;
+    await repository.createUser(user);
+    return CreateUserState.USER_CREATED;
   }
 }

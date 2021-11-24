@@ -6,6 +6,7 @@ import 'package:talk/ui/auth/auth_viewmodel.dart';
 import 'package:talk/ui/chats/chats_viewmodel.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/strings.dart';
+import 'package:talk/ui/di/auth_factory.dart';
 import 'package:talk/ui/di/username_factory.dart';
 import 'package:talk/ui/username/username_screen.dart';
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AuthViewModel()),
+        ChangeNotifierProvider(create: (_) => AuthViewModelFactory.make()),
         ChangeNotifierProvider(create: (_) => ChatsViewModel()),
         ChangeNotifierProvider(create: (_) => UsernameViewModelFactory.make()),
       ],

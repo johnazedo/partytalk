@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:talk/domain/create_use_state.dart';
+import 'package:talk/domain/states/create_user_state.dart';
 import 'package:talk/domain/entities/user.dart';
 import 'package:talk/domain/usecases/create_user.dart';
 
@@ -13,7 +13,7 @@ class UsernameViewModel extends ChangeNotifier {
   var validUsername = ValueNotifier<bool>(true);
   var userCreated = ValueNotifier<bool>(false);
 
-  final _state = ValueNotifier<CreateUserState>(CreateUserState.DEFAULT);
+  final _state = ValueNotifier<CreateUserState>(CreateUserState.USER_CREATED);
 
   void createUser(String? username) async {
     if (username != null) {
