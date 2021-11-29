@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 import 'package:talk/ui/components/buttons/google_button.dart';
@@ -5,11 +6,16 @@ import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/strings.dart';
 import 'package:talk/ui/constants/styles.dart';
-
 import 'auth_viewmodel.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
+
+
+  navigateTo(BuildContext context, bool userAlreadyCreated) async {
+    String routeName = userAlreadyCreated ? "/chats" : "/username";
+    Navigator.of(context).popAndPushNamed(routeName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,25 +51,18 @@ class AuthScreen extends StatelessWidget {
               ),
             ],
           ),
-
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: Dimens.screenPadding,
               vertical: Dimens.bottomScreenToButtonPadding,
             ),
             child: GoogleButton(
-              onPressed: vm.signIn,
+              onPressed: () async {
+                await vm.signIn();
+                navigateTo(context, vm.userAlreadyCreated.value);
+              },
             ),
           ),
-
-          // Center(
-          //   child: AnimatedBuilder(
-          //     animation: vm,
-          //     builder: (context, child) {
-          //       return Text("Log: User = ${vm.nameUser.value}");
-          //     },
-          //   ),
-          // ),
         ],
       ),
     );

@@ -15,7 +15,6 @@ class UsernameScreen extends StatefulWidget {
 }
 
 class _UsernameScreenState extends State<UsernameScreen> {
-
   final TextEditingController _controller = TextEditingController();
 
   @override
@@ -36,29 +35,34 @@ class _UsernameScreenState extends State<UsernameScreen> {
           children: [
             Column(
               children: [
-                const Text(
-                  Strings.welcomeMessage,
-                  style: TextStyles.topMessageText,
+                ValueListenableBuilder(
+                  valueListenable: vm.name,
+                  builder: (BuildContext context, value, Widget? child) {
+                    return Text(
+                      Strings.getWelcomeMessage(vm.name.value),
+                      style: TextStyles.topMessageText,
+                    );
+                  },
                 ),
-                AnimatedBuilder(
-                  animation: vm,
-                  builder: (BuildContext context, Widget? child) {
-                    var color = vm.isUsernameInvalid() ?  Colors.red:CustomColors.darkSecondaryColor;
+                ValueListenableBuilder(
+                  valueListenable: vm.state,
+                  builder: (BuildContext context, value, Widget? child) {
+                    var color = vm.isUsernameInvalid()
+                        ? Colors.red
+                        : CustomColors.darkSecondaryColor;
                     return TextField(
                       controller: _controller,
                       cursorColor: CustomColors.darkSecondaryColor,
                       decoration: InputDecoration(
                         focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              color: color
-                          ),
+                          borderSide: BorderSide(color: color),
                         ),
                       ),
                     );
                   },
                 ),
-                AnimatedBuilder(
-                  animation: vm,
+                ValueListenableBuilder(
+                  valueListenable: vm.state,
                   child: const Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
@@ -66,16 +70,14 @@ class _UsernameScreenState extends State<UsernameScreen> {
                       child: Text(
                         Strings.usernameIsNotValid,
                         style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: Colors.red
-                        ),
+                            fontWeight: FontWeight.w600, color: Colors.red),
                       ),
                     ),
                   ),
-                  builder: (BuildContext context, Widget? child) {
-                   return Container(
-                     child: vm.isUsernameInvalid() ? child : null,
-                   );
+                  builder: (BuildContext context, value, Widget? child) {
+                    return Container(
+                      child: vm.isUsernameInvalid() ? child : null,
+                    );
                   },
                 )
               ],

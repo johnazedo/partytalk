@@ -15,7 +15,10 @@ class Strings {
   static const search = "Pesquisar";
 
   // UsernameScreen
-  static const welcomeMessage = "Bem vindo João Pedro Limão :tada:. Por favor digite o seu nome de usuário:";
   static const createUser = "Criar usuário";
   static const usernameIsNotValid = "Este username já existe!";
+
+  static String getWelcomeMessage(String name) {
+    return "Bem vindo $name :tada:. Por favor digite o seu nome de usuário:";
+  }
 }

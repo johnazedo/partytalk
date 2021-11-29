@@ -10,10 +10,8 @@ class UsernameViewModel extends ChangeNotifier {
     required this.createUserUseCase,
   });
 
-  var validUsername = ValueNotifier<bool>(true);
-  var userCreated = ValueNotifier<bool>(false);
-
-  final _state = ValueNotifier<CreateUserState>(CreateUserState.USER_CREATED);
+  var name = ValueNotifier<String>("João Pedro Limão");
+  final state = ValueNotifier<CreateUserState>(CreateUserState.USER_CREATED);
 
   void createUser(String? username) async {
     if (username != null) {
@@ -23,18 +21,18 @@ class UsernameViewModel extends ChangeNotifier {
         username: username,
         photoURL: "photo.com"
       );
-      _state.value = await createUserUseCase(user);
+      state.value = await createUserUseCase(user);
     }
 
     notifyListeners();
   }
 
   bool isUserCreated(){
-    return _state.value == CreateUserState.USER_CREATED;
+    return state.value == CreateUserState.USER_CREATED;
   }
 
   bool isUsernameInvalid() {
-    return _state.value == CreateUserState.USERNAME_INVALID;
+    return state.value == CreateUserState.USERNAME_INVALID;
   }
 }
 
