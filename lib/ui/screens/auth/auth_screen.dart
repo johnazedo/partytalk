@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
-import 'package:talk/ui/auth/auth_viewmodel.dart';
+import 'package:talk/ui/components/buttons/google_button.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/strings.dart';
 import 'package:talk/ui/constants/styles.dart';
-import '../components/buttons/google_button.dart';
+
+import 'auth_viewmodel.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);

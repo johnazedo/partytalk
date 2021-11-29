@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/cupertino.dart';
-import 'package:talk/ui/chats/chat_uimodel.dart';
+import 'chat_uimodel.dart';
 
 class ChatsViewModel extends ChangeNotifier {
 

@@ -5,7 +5,7 @@ import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/strings.dart';
 import 'package:talk/ui/constants/styles.dart';
-import 'package:talk/ui/username/username_viewmodel.dart';
+import 'package:talk/ui/screens/username/username_viewmodel.dart';
 
 class UsernameScreen extends StatefulWidget {
   const UsernameScreen({Key? key}) : super(key: key);
