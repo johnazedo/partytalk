@@ -19,6 +19,6 @@ class Strings {
   static const usernameIsNotValid = "Este username já existe!";
 
   static String getWelcomeMessage(String name) {
-    return "Bem vindo $name :tada:. Por favor digite o seu nome de usuário:";
+    return "Bem vindo, $name! 🎊 \nPor favor digite o seu nome de usuário:";
   }
 }
