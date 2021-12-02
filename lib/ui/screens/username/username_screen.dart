@@ -47,7 +47,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
                 ValueListenableBuilder(
                   valueListenable: vm.state,
                   builder: (BuildContext context, value, Widget? child) {
-                    var color = vm.isUsernameInvalid()
+                    var color = vm.isUsernameInvalidOrUnavailable()
                         ? Colors.red
                         : CustomColors.darkSecondaryColor;
                     return TextField(
@@ -63,20 +63,20 @@ class _UsernameScreenState extends State<UsernameScreen> {
                 ),
                 ValueListenableBuilder(
                   valueListenable: vm.state,
-                  child: const Align(
+                  child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
-                        Strings.usernameIsNotValid,
-                        style: TextStyle(
+                        vm.getErrorMessage(),
+                        style: const TextStyle(
                             fontWeight: FontWeight.w600, color: Colors.red),
                       ),
                     ),
                   ),
                   builder: (BuildContext context, value, Widget? child) {
                     return Container(
-                      child: vm.isUsernameInvalid() ? child : null,
+                      child: vm.isUsernameInvalidOrUnavailable() ? child : null,
                     );
                   },
                 )

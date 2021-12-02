@@ -10,13 +10,19 @@ class CreateUserUseCaseImpl implements CreateUserUseCase {
   final UserRepository repository;
   CreateUserUseCaseImpl({required this.repository});
 
+  final MIN_CHAR_USERNAME = 3;
+
   @override
   Future<CreateUserState> call(User user) async{
-    var usernameValid = await repository.isValidUsername(user.username);
-    if(!usernameValid) {
-      return CreateUserState.USERNAME_INVALID;
+    if(user.username.length > MIN_CHAR_USERNAME){
+      var usernameValid = await repository.isValidUsername(user.username);
+      if(usernameValid){
+        await repository.createUser(user);
+        return CreateUserState.USER_CREATED;
+      } else {
+        return CreateUserState.USERNAME_UNAVAILABLE;
+      }
     }
-    await repository.createUser(user);
-    return CreateUserState.USER_CREATED;
+    return CreateUserState.USERNAME_INVALID;
   }
 }

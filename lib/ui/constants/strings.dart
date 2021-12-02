@@ -16,7 +16,8 @@ class Strings {
 
   // UsernameScreen
   static const createUser = "Criar usuário";
-  static const usernameIsNotValid = "Este username já existe!";
+  static const usernameIsUnavailable = "Este username já está sendo usado!";
+  static const usernameIsInvalid = "Este username é inválido!";
 
   static String getWelcomeMessage(String name) {
     return "Bem vindo, $name! 🎊 \nPor favor digite o seu nome de usuário:";
