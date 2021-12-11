@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:talk/ui/components/avatar/avatar.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/strings.dart';
@@ -49,10 +50,7 @@ SliverAppBar getSliverAppBar(BuildContext context) {
     actions: [
       Padding(
         padding: EdgeInsets.symmetric(horizontal: Dimens.screenPadding),
-        child: Icon(
-          Icons.person,
-          color: CustomColors.customBlack,
-        ),
+        child: Avatar(),
       )
     ],
   );
