@@ -13,6 +13,7 @@ class Strings {
   static const chats = "Conversas";
   static const events = "Eventos";
   static const search = "Pesquisar";
+  static const noMessages = "Nenhum registro de conversa recente";
 
   // UsernameScreen
   static const createUser = "Criar usuário";

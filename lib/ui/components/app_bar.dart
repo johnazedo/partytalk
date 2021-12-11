@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/strings.dart';
@@ -11,11 +12,10 @@ PreferredSize getAppBar(BuildContext context) {
     preferredSize: Size.fromHeight(statusBarHeight + 40.0),
     child: Padding(
       padding: EdgeInsets.only(
-        left: Dimens.screenPadding,
-        right: Dimens.screenPadding,
-        top: statusBarHeight + Dimens.minPadding,
-        bottom: Dimens.minPadding
-      ),
+          left: Dimens.screenPadding,
+          right: Dimens.screenPadding,
+          top: statusBarHeight + Dimens.minPadding,
+          bottom: Dimens.minPadding),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
@@ -23,17 +23,24 @@ PreferredSize getAppBar(BuildContext context) {
             Strings.chats,
             style: TextStyles.titleApp,
           ),
-
+          Icon(
+            Icons.person,
+            color: CustomColors.customBlack,
+          )
         ],
       ),
     ),
   );
 }
 
-
 SliverAppBar getSliverAppBar(BuildContext context) {
   return const SliverAppBar(
     floating: true,
+    backwardsCompatibility: false,
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarColor: CustomColors.backgroundColor,
+      statusBarIconBrightness: Brightness.dark,
+    ),
     backgroundColor: CustomColors.backgroundColor,
     title: Text(
       Strings.chats,
@@ -42,9 +49,11 @@ SliverAppBar getSliverAppBar(BuildContext context) {
     actions: [
       Padding(
         padding: EdgeInsets.symmetric(horizontal: Dimens.screenPadding),
-        child: Icon(Icons.person, color: CustomColors.customBlack,),
+        child: Icon(
+          Icons.person,
+          color: CustomColors.customBlack,
+        ),
       )
     ],
   );
-
 }

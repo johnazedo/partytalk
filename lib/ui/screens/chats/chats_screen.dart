@@ -6,6 +6,7 @@ import 'package:talk/ui/components/bnb.dart';
 import 'package:talk/ui/components/fab.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/dimens.dart';
+import 'package:talk/ui/constants/strings.dart';
 import 'chats_viewmodel.dart';
 import 'components/chat_item.dart';
 
@@ -15,32 +16,60 @@ class ChatsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<ChatsViewModel>();
-    vm.getChats();
+    // vm.getChats();
     return Scaffold(
       backgroundColor: CustomColors.backgroundColor,
       bottomNavigationBar: const CustomBottomNavigationBar(),
-      floatingActionButton: const ExtendedFloatingActionButton(),
-      // appBar: getAppBar(context),
+      floatingActionButton: ExtendedFloatingActionButton(vm: vm),
       body: NestedScrollView(
-        floatHeaderSlivers: true,
-        headerSliverBuilder: (context, innerBoxIsScrolled) =>
-            [getSliverAppBar(context)],
-        body: ListView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: Dimens.screenPadding),
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          itemCount: vm.getChatListSize(),
-          itemBuilder: (context, index) {
-            return Padding(
-              padding:
-                  EdgeInsets.only(bottom: vm.isLastItem(index) ? 60.0 : 0.0),
-              child: ChatItem(
-                chatUIModel: vm.chats.value[index],
-              ),
-            );
-          },
-        ),
-      ),
+          floatHeaderSlivers: true,
+          headerSliverBuilder: (context, innerBoxIsScrolled) =>
+              [getSliverAppBar(context)],
+          body: ValueListenableBuilder(
+            valueListenable: vm.chats,
+            builder: (BuildContext context, value, Widget? child) {
+              if (vm.hasMessages()) {
+                return getList(vm);
+              }
+              return getEmptyListImage(context);
+            },
+          )),
     );
   }
+}
+
+Widget getEmptyListImage(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(
+        horizontal: Dimens.largePadding,
+        vertical: Dimens.bottomScreenToButtonPadding),
+    child: Column(
+      children: [
+        Image.asset(
+          "assets/images/no-message.png",
+        ),
+        const Text(
+          Strings.noMessages,
+          style: TextStyle(fontWeight: FontWeight.w600),
+        )
+      ],
+    ),
+  );
+}
+
+ListView getList(ChatsViewModel vm) {
+  return ListView.builder(
+    padding: const EdgeInsets.symmetric(horizontal: Dimens.screenPadding),
+    scrollDirection: Axis.vertical,
+    shrinkWrap: true,
+    itemCount: vm.getChatListSize(),
+    itemBuilder: (context, index) {
+      return Padding(
+        padding: EdgeInsets.only(bottom: vm.isLastItem(index) ? 60.0 : 0.0),
+        child: ChatItem(
+          chatUIModel: vm.chats.value[index],
+        ),
+      );
+    },
+  );
 }

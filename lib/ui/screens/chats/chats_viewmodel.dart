@@ -32,6 +32,10 @@ class ChatsViewModel extends ChangeNotifier {
     return chats.value.length;
   }
 
+  bool hasMessages(){
+    return getChatListSize() != 0;
+  }
+
   bool isLastItem(int index){
     return getChatListSize() - 1 == index;
   }

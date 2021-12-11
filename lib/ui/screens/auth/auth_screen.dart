@@ -28,7 +28,7 @@ class AuthScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(
-                "assets/images/Messaging-bro.png",
+                "assets/images/messaging-bro.png",
                 fit: BoxFit.cover,
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 1.8,
