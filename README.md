@@ -1,7 +1,7 @@
 # PartyTalk
 
 
-<img src="https://user-images.githubusercontent.com/19677206/142435408-e99359bb-97ba-4ef5-9481-461a2362e955.png" width="250" height="531" /> <img src="https://user-images.githubusercontent.com/19677206/145689738-b257cd52-d47c-4572-ba23-922db84a4790.png"  width="250" height="531" /> <img src="https://user-images.githubusercontent.com/19677206/142513496-d2243764-3ec3-479a-88f4-af1d1e7e9b56.png"  width="250" height="531" />
+<img src="https://user-images.githubusercontent.com/19677206/142435408-e99359bb-97ba-4ef5-9481-461a2362e955.png" width="250" height="531" /> <img src="https://user-images.githubusercontent.com/19677206/145689738-b257cd52-d47c-4572-ba23-922db84a4790.png"  width="250" height="531" /> <img src="https://user-images.githubusercontent.com/19677206/145690744-f617bc12-4ad4-42d4-a373-35c2fecb9826.png"  width="250" height="531" />
 
 PartyTalk is a app to instant messages using gmail for authentication. The context that app will be used are events, with the objective that participants can network without sharing any personal information. A differential that this app can offer is the possibility to create multiple accounts for a single user.
 
