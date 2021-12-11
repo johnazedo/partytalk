@@ -5,6 +5,7 @@ import 'package:talk/domain/entities/user.dart' as entities;
 abstract class FirebaseAuthUseCase {
   entities.User? getUser(String username);
   String? getDisplayName();
+  String? getProfileImage();
 }
 
 class FirebaseAuthUseCaseImpl implements FirebaseAuthUseCase{
@@ -20,6 +21,10 @@ class FirebaseAuthUseCaseImpl implements FirebaseAuthUseCase{
       return firebaseUser.displayName!;
     }
     return null;
+  }
+
+  String? getProfileImage() {
+    return firebaseAuth.currentUser!.photoURL;
   }
 
   @override
