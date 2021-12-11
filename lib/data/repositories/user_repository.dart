@@ -20,8 +20,8 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<bool> userAlreadyAdded(User user) async {
-    var querySnapshot = await service.searchUser('email', user.email);
+  Future<bool> userAlreadyAdded(String email) async {
+    var querySnapshot = await service.searchUser('email', email);
     return querySnapshot.docs.isNotEmpty;
   }
 }

@@ -1,14 +1,20 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
-import 'package:talk/ui/auth/auth_viewmodel.dart';
+import 'package:talk/ui/components/buttons/google_button.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/strings.dart';
 import 'package:talk/ui/constants/styles.dart';
-import '../components/buttons/google_button.dart';
+import 'auth_viewmodel.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
+
+  navigateToNext(BuildContext context, bool userAlreadyCreated) async {
+    String routeName = userAlreadyCreated ? "/chats" : "/username";
+    Navigator.of(context).popAndPushNamed(routeName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +28,7 @@ class AuthScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(
-                "assets/images/Messaging-bro.png",
+                "assets/images/messaging-bro.png",
                 fit: BoxFit.cover,
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 1.8,
@@ -44,25 +50,18 @@ class AuthScreen extends StatelessWidget {
               ),
             ],
           ),
-
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: Dimens.screenPadding,
               vertical: Dimens.bottomScreenToButtonPadding,
             ),
             child: GoogleButton(
-              onPressed: vm.signIn,
+              onPressed: () async {
+                await vm.signIn();
+                navigateToNext(context, vm.userAlreadyCreated.value);
+              },
             ),
           ),
-
-          // Center(
-          //   child: AnimatedBuilder(
-          //     animation: vm,
-          //     builder: (context, child) {
-          //       return Text("Log: User = ${vm.nameUser.value}");
-          //     },
-          //   ),
-          // ),
         ],
       ),
     );

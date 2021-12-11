@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/cupertino.dart';
-import 'package:talk/ui/chats/chat_uimodel.dart';
+import 'chat_uimodel.dart';
 
 class ChatsViewModel extends ChangeNotifier {
 
@@ -30,6 +30,10 @@ class ChatsViewModel extends ChangeNotifier {
 
   int getChatListSize() {
     return chats.value.length;
+  }
+
+  bool hasMessages(){
+    return getChatListSize() != 0;
   }
 
   bool isLastItem(int index){
