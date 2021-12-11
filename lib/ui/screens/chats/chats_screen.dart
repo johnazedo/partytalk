@@ -20,16 +20,20 @@ class ChatsScreen extends StatelessWidget {
       backgroundColor: CustomColors.backgroundColor,
       bottomNavigationBar: const CustomBottomNavigationBar(),
       floatingActionButton: const ExtendedFloatingActionButton(),
-      appBar: getAppBar(context),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Dimens.screenPadding),
-        child: ListView.builder(
+      // appBar: getAppBar(context),
+      body: NestedScrollView(
+        floatHeaderSlivers: true,
+        headerSliverBuilder: (context, innerBoxIsScrolled) =>
+            [getSliverAppBar(context)],
+        body: ListView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: Dimens.screenPadding),
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
           itemCount: vm.getChatListSize(),
           itemBuilder: (context, index) {
             return Padding(
-              padding: EdgeInsets.only(bottom: vm.isLastItem(index) ? 60.0 : 0.0),
+              padding:
+                  EdgeInsets.only(bottom: vm.isLastItem(index) ? 60.0 : 0.0),
               child: ChatItem(
                 chatUIModel: vm.chats.value[index],
               ),

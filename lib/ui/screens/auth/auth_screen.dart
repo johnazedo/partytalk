@@ -11,7 +11,7 @@ import 'auth_viewmodel.dart';
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
 
-  navigateTo(BuildContext context, bool userAlreadyCreated) async {
+  navigateToNext(BuildContext context, bool userAlreadyCreated) async {
     String routeName = userAlreadyCreated ? "/chats" : "/username";
     Navigator.of(context).popAndPushNamed(routeName);
   }
@@ -58,7 +58,7 @@ class AuthScreen extends StatelessWidget {
             child: GoogleButton(
               onPressed: () async {
                 await vm.signIn();
-                navigateTo(context, vm.userAlreadyCreated.value);
+                navigateToNext(context, vm.userAlreadyCreated.value);
               },
             ),
           ),

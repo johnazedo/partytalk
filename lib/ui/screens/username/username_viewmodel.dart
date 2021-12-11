@@ -17,7 +17,7 @@ class UsernameViewModel extends ChangeNotifier {
   var name = ValueNotifier<String>("");
   final state = ValueNotifier<CreateUserState>(CreateUserState.USER_CREATED);
 
-  void createUser(String username) async {
+  Future<void> createUser(String username) async {
     var user = firebaseAuthUseCase.getUser(username);
     if (user != null) {
       state.value = await createUserUseCase(user);
@@ -35,6 +35,10 @@ class UsernameViewModel extends ChangeNotifier {
 
   bool isUsernameInvalidOrUnavailable() {
     return state.value == CreateUserState.USERNAME_INVALID || state.value == CreateUserState.USERNAME_UNAVAILABLE;
+  }
+
+  bool isUserCreated() {
+    return state.value == CreateUserState.USER_CREATED;
   }
 
   void loadDisplayName() {

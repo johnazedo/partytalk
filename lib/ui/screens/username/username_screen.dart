@@ -17,12 +17,18 @@ class UsernameScreen extends StatefulWidget {
 class _UsernameScreenState extends State<UsernameScreen> {
   final TextEditingController _controller = TextEditingController();
 
+  navigateToNext(BuildContext context, bool isUserCreated) {
+    if(isUserCreated){
+      Navigator.of(context).popAndPushNamed("/chats");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<UsernameViewModel>();
     var statusBarHeight = MediaQuery.of(context).padding.top;
     return Scaffold(
-      backgroundColor: CustomColors.accentGray,
+      backgroundColor: CustomColors.backgroundColor,
       body: Padding(
         padding: EdgeInsets.only(
           left: Dimens.screenPadding,
@@ -84,7 +90,10 @@ class _UsernameScreenState extends State<UsernameScreen> {
             ),
             PinkButton(
               text: Strings.createUser,
-              onPressed: () => vm.createUser(_controller.text.toString()),
+              onPressed: () async {
+                await vm.createUser(_controller.text.toString());
+                navigateToNext(context, vm.isUserCreated());
+              },
             ),
           ],
         ),
