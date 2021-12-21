@@ -7,15 +7,17 @@ abstract class UserService {
 }
 
 class UserServiceImpl implements UserService {
+
+  static var collection = FirebaseFirestore.instance.collection("users");
+
   @override
   Future<QuerySnapshot> searchUser(String field, dynamic value) {
-    return FirebaseFirestore.instance
-        .collection("users")
-        .where(field, isEqualTo: value).limit(1).get();
+    return collection.where(field, isEqualTo: value).limit(1).get();
   }
 
   @override
-  Future<DocumentReference> createUser(User user){
-    return FirebaseFirestore.instance.collection("users").add(user.toJson());
+  Future<DocumentReference> createUser(User user) async{
+    await collection.doc(user.email).set(user.toJson());
+    return collection.doc(user.email);
   }
 }
