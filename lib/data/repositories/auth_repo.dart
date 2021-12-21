@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:talk/domain/repositories/auth_repository.dart';
+import 'package:talk/domain/repositories/auth_repo.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   @override

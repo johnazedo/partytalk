@@ -1,6 +1,6 @@
 import 'package:talk/domain/states/create_user_state.dart';
 import 'package:talk/domain/entities/user.dart';
-import 'package:talk/domain/repositories/user_repository.dart';
+import 'package:talk/domain/repositories/user_repo.dart';
 
 abstract class CreateUserUseCase {
   Future<CreateUserState> call(User user);

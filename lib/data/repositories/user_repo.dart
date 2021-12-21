@@ -1,6 +1,6 @@
 import 'package:talk/data/services/user_service.dart';
 import 'package:talk/domain/entities/user.dart';
-import 'package:talk/domain/repositories/user_repository.dart';
+import 'package:talk/domain/repositories/user_repo.dart';
 
 class UserRepositoryImpl implements UserRepository {
   final UserService service;
