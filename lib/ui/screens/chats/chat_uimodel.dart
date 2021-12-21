@@ -9,3 +9,5 @@ class ChatUIModel {
   ChatUIModel(this.personName, this.lastMessage, this.amountMessage, this.date, this.photoUrl);
 }
 
+
+

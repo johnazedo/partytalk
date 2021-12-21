@@ -1,31 +1,19 @@
 
 
 import 'package:flutter/cupertino.dart';
+import 'package:talk/domain/entities/chat.dart';
+import 'package:talk/domain/usecases/list_chat.dart';
 import 'chat_uimodel.dart';
 
 class ChatsViewModel extends ChangeNotifier {
 
-  var chats = ValueNotifier<List<ChatUIModel>>([]);
+  final ListChatUseCase listChatUseCase;
+  ChatsViewModel({required this.listChatUseCase});
 
-  void getChats() {
-    chats.value = [
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("Luis Filipe Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("Luis Filipe Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("Luis Filipe Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("Luis Filipe Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-    ];
+  var chats = ValueNotifier<List<Chat>>([]);
+
+  void getChats() async {
+    chats.value = await listChatUseCase();
   }
 
   int getChatListSize() {

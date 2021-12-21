@@ -60,7 +60,7 @@ ListView getList(ChatsViewModel vm) {
       return Padding(
         padding: EdgeInsets.only(bottom: vm.isLastItem(index) ? 60.0 : 0.0),
         child: ChatItem(
-          chatUIModel: vm.chats.value[index],
+          chat: vm.chats.value[index],
         ),
       );
     },

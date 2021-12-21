@@ -3,9 +3,7 @@ import 'package:talk/domain/entities/user.dart' as entities;
 
 abstract class FirebaseAuthUseCase {
   entities.User? getUser(String username);
-
   String? getDisplayName();
-
   String? getProfileImage();
 }
 

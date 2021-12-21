@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class ChatService {
-  Future<QuerySnapshot> filterChatsByParticipant(String userEmail);
+  Future<QuerySnapshot<Map<String, dynamic>>> filterChatsByParticipant(DocumentReference docRef);
 }
 
 class ChatServiceImpl implements ChatService{
 
-  static var collection = FirebaseFirestore.instance.collection("chats");
+  static final collection = FirebaseFirestore.instance.collection("chats");
 
   @override
-  Future<QuerySnapshot> filterChatsByParticipant(String userEmail) {
-    return collection.where("participants", arrayContains: userEmail).get();
+  Future<QuerySnapshot<Map<String, dynamic>>> filterChatsByParticipant(DocumentReference docRef) {
+    return collection.where("participants", arrayContains: docRef).get();
   }
 }

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:talk/domain/entities/chat.dart';
 import 'package:talk/ui/constants/styles.dart';
-
-import '../chat_uimodel.dart';
 import 'chat_badge.dart';
 
 class ChatItem extends StatelessWidget {
-  final ChatUIModel chatUIModel;
+  final Chat chat;
 
-  const ChatItem({Key? key, required this.chatUIModel}) : super(key: key);
+  const ChatItem({Key? key, required this.chat}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,8 @@ class ChatItem extends StatelessWidget {
           child: Row(
             children: [
               CircleAvatar(
-                backgroundImage: AssetImage(chatUIModel.photoUrl),
+                backgroundImage: AssetImage(
+                    chat.photoURL ?? "assets/images/avatar.jpg"),
                 maxRadius: 30,
               ),
               const SizedBox(
@@ -31,11 +31,11 @@ class ChatItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          chatUIModel.personName,
+                          chat.title,
                           style: TextStyles.focusText,
                         ),
                         Text(
-                          chatUIModel.date,
+                          chat.time,
                           style: TextStyles.hintText,
                         )
                       ],
@@ -44,12 +44,15 @@ class ChatItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          chatUIModel.lastMessage,
+                          chat.lastMessage,
                           style: TextStyles.hintText,
                         ),
-                        AmountMessageBadge(
-                          text: chatUIModel.amountMessage.toString()
-                        )
+                        Visibility(
+                          visible: chat.noReadMessageAmount>0,
+                          child: AmountMessageBadge(
+                              text: chat.noReadMessageAmount.toString()
+                          ),
+                        ),
                       ],
                     )
                   ],
