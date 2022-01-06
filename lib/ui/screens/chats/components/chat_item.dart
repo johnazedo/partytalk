@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:talk/domain/entities/chat.dart';
 import 'package:talk/ui/constants/styles.dart';
+import 'package:talk/ui/screens/chats/chat_uimodel.dart';
 import 'chat_badge.dart';
 
 class ChatItem extends StatelessWidget {
-  final Chat chat;
+  final ChatUIModel chat;
 
   const ChatItem({Key? key, required this.chat}) : super(key: key);
 
@@ -18,7 +18,7 @@ class ChatItem extends StatelessWidget {
             children: [
               CircleAvatar(
                 backgroundImage: AssetImage(
-                    chat.photoURL ?? "assets/images/avatar.jpg"),
+                    chat.photoUrl ?? "assets/images/avatar.jpg"),
                 maxRadius: 30,
               ),
               const SizedBox(
@@ -31,11 +31,11 @@ class ChatItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          chat.title,
+                          chat.personName,
                           style: TextStyles.focusText,
                         ),
                         Text(
-                          chat.time,
+                          "${chat.date.toDate().hour}:${chat.date.toDate().minute}",
                           style: TextStyles.hintText,
                         )
                       ],
@@ -48,9 +48,9 @@ class ChatItem extends StatelessWidget {
                           style: TextStyles.hintText,
                         ),
                         Visibility(
-                          visible: chat.noReadMessageAmount>0,
+                          visible: chat.amountMessage>0,
                           child: AmountMessageBadge(
-                              text: chat.noReadMessageAmount.toString()
+                              text: chat.amountMessage.toString()
                           ),
                         ),
                       ],

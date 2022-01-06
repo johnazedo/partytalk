@@ -12,16 +12,12 @@ class ChatRepositoryImpl implements ChatRepository {
   ChatRepositoryImpl({required this.chatService, required this.userService});
 
   @override
-  Future<List<Chat>> fetchChats() async {
-    List<Chat> chats = [];
-    final docRef = userService.getUserByDocumentId("jplimao12@gmail.com");
-    final querySnapshot = await chatService.filterChatsByParticipant(docRef);
-    for (var doc in querySnapshot.docs) {
-      final response = ChatResponse.fromJSON(doc.data());
-      final chat = ChatFactory.make(doc.id, response);
-      chats.add(chat);
-    }
-    return chats;
+  Stream<QuerySnapshot<Map<String, dynamic>>> fetchChats(String userEmail) {
+    return FirebaseFirestore.instance
+        .collection("users")
+        .doc(userEmail)
+        .collection("chats")
+        .snapshots();
   }
 }
 

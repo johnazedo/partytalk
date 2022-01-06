@@ -1,7 +1,6 @@
-
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:talk/domain/entities/chat.dart';
 
 abstract class ChatRepository {
-  Future<List<Chat>> fetchChats();
+  Stream<QuerySnapshot<Map<String, dynamic>>> fetchChats(String userEmail);
 }

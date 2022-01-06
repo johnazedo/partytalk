@@ -1,7 +1,5 @@
-
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:talk/domain/entities/chat.dart';
 import 'package:talk/domain/usecases/list_chat.dart';
 import 'chat_uimodel.dart';
 
@@ -10,10 +8,10 @@ class ChatsViewModel extends ChangeNotifier {
   final ListChatUseCase listChatUseCase;
   ChatsViewModel({required this.listChatUseCase});
 
-  var chats = ValueNotifier<List<Chat>>([]);
+  var chats = ValueNotifier<List<ChatUIModel>>([]);
 
-  void getChats() async {
-    chats.value = await listChatUseCase();
+  Stream getStreamChat() {
+    return listChatUseCase("jplimao12@gmail.com");
   }
 
   int getChatListSize() {
@@ -27,5 +25,4 @@ class ChatsViewModel extends ChangeNotifier {
   bool isLastItem(int index){
     return getChatListSize() - 1 == index;
   }
-
 }
