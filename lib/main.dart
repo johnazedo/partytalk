@@ -6,10 +6,12 @@ import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/strings.dart';
 import 'package:talk/ui/di/auth_factory.dart';
 import 'package:talk/ui/di/avatar_factory.dart';
+import 'package:talk/ui/di/events_factory.dart';
 import 'package:talk/ui/di/username_factory.dart';
 import 'package:talk/ui/screens/auth/auth_screen.dart';
 import 'package:talk/ui/screens/chats/chats_screen.dart';
 import 'package:talk/ui/screens/chats/chats_viewmodel.dart';
+import 'package:talk/ui/screens/events/events_screen.dart';
 import 'ui/screens/username/username_screen.dart';
 
 void main() {
@@ -24,9 +26,8 @@ class MyApp extends StatelessWidget {
     Firebase.initializeApp();
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark
-      ),
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.dark),
     );
 
     return MultiProvider(
@@ -34,24 +35,27 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthViewModelFactory.make()),
         ChangeNotifierProvider(create: (_) => ChatsViewModel()),
         ChangeNotifierProvider(create: (_) => UsernameViewModelFactory.make()),
-        ChangeNotifierProvider(create: (_) => AvatarViewModelFactory.make())
+        ChangeNotifierProvider(create: (_) => AvatarViewModelFactory.make()),
+        ChangeNotifierProvider(create: (_) => EventsViewModelFactory.make())
       ],
       child: MaterialApp(
-        title: Strings.appName,
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          backgroundColor: CustomColors.backgroundColor,
-          colorScheme: Theme.of(context).colorScheme.copyWith(secondary: CustomColors.secondaryColor),
-          fontFamily: Strings.fontFamily,
-        ),
-        initialRoute: "/",
-        routes: {
-          "/": (context) => const AuthScreen(),
-          "/username": (context) => const UsernameScreen(),
-          "/chats": (context) => const ChatsScreen()
-        }
-      ),
+          title: Strings.appName,
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            backgroundColor: CustomColors.backgroundColor,
+            colorScheme: Theme.of(context)
+                .colorScheme
+                .copyWith(secondary: CustomColors.secondaryColor),
+            fontFamily: Strings.fontFamily,
+          ),
+          initialRoute: "/",
+          routes: {
+            "/": (context) => const AuthScreen(),
+            "/username": (context) => const UsernameScreen(),
+            "/chats": (context) => const ChatsScreen(),
+            "/events": (context) => const EventsScreen()
+          }),
     );
   }
 }

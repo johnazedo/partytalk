@@ -1,5 +1,3 @@
-
-
 class Strings {
   // Shared
   static const appName = "PartyTalk";
@@ -7,7 +5,8 @@ class Strings {
 
   // AuthScreen
   static const googleTextButton = "Entrar com o Google";
-  static const appDescription = "O aplicativo de conversas para o seu evento. Efetue o login para expandir o seu network.";
+  static const appDescription =
+      "O aplicativo de conversas para o seu evento. Efetue o login para expandir o seu network.";
 
   // ChatsScreen
   static const chats = "Conversas";
@@ -19,6 +18,9 @@ class Strings {
   static const createUser = "Criar usuário";
   static const usernameIsUnavailable = "Este username já está sendo usado!";
   static const usernameIsInvalid = "Este username é inválido!";
+
+  // EventsScreen
+  static const noEvents = "Nenhum evento registrado";
 
   static String getWelcomeMessage(String name) {
     return "Bem vindo, $name! 🎊 \nPor favor digite o seu nome de usuário:";
