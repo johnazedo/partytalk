@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:talk/ui/components/avatar/avatar.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/dimens.dart';
-import 'package:talk/ui/constants/strings.dart';
 import 'package:talk/ui/constants/styles.dart';
 
 PreferredSize getAppBar(BuildContext context) {
@@ -21,7 +19,7 @@ PreferredSize getAppBar(BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
           Text(
-            Strings.chats,
+            "PartyTalk",
             style: TextStyles.titleApp,
           ),
           Icon(
@@ -44,7 +42,7 @@ SliverAppBar getSliverAppBar(BuildContext context) {
     ),
     backgroundColor: CustomColors.backgroundColor,
     title: Text(
-      Strings.chats,
+      "PartyTalk",
       style: TextStyles.titleApp,
     ),
     actions: [

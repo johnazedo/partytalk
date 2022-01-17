@@ -12,7 +12,7 @@ class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
 
   navigateToNext(BuildContext context, bool userAlreadyCreated) async {
-    String routeName = userAlreadyCreated ? "/chats" : "/username";
+    String routeName = userAlreadyCreated ? "/home" : "/username";
     Navigator.of(context).popAndPushNamed(routeName);
   }
 

@@ -9,9 +9,8 @@ import 'package:talk/ui/di/avatar_factory.dart';
 import 'package:talk/ui/di/events_factory.dart';
 import 'package:talk/ui/di/username_factory.dart';
 import 'package:talk/ui/screens/auth/auth_screen.dart';
-import 'package:talk/ui/screens/chats/chats_screen.dart';
 import 'package:talk/ui/screens/chats/chats_viewmodel.dart';
-import 'package:talk/ui/screens/events/events_screen.dart';
+import 'package:talk/ui/screens/home_screen.dart';
 import 'ui/screens/username/username_screen.dart';
 
 void main() {
@@ -53,8 +52,7 @@ class MyApp extends StatelessWidget {
           routes: {
             "/": (context) => const AuthScreen(),
             "/username": (context) => const UsernameScreen(),
-            "/chats": (context) => const ChatsScreen(),
-            "/events": (context) => const EventsScreen()
+            "/home": (context) => const HomeScreen()
           }),
     );
   }
