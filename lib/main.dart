@@ -11,6 +11,7 @@ import 'package:talk/ui/di/username_factory.dart';
 import 'package:talk/ui/screens/auth/auth_screen.dart';
 import 'package:talk/ui/screens/chats/chats_viewmodel.dart';
 import 'package:talk/ui/screens/home_screen.dart';
+import 'package:talk/ui/screens/search/search_screen.dart';
 import 'ui/screens/username/username_screen.dart';
 
 void main() {
@@ -52,7 +53,8 @@ class MyApp extends StatelessWidget {
           routes: {
             "/": (context) => const AuthScreen(),
             "/username": (context) => const UsernameScreen(),
-            "/home": (context) => const HomeScreen()
+            "/home": (context) => const HomeScreen(),
+            "/search": (context) => const SearchScreen()
           }),
     );
   }
