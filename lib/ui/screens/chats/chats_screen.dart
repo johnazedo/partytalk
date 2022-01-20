@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/src/provider.dart';
 import 'package:talk/ui/components/app_bar.dart';
-import 'package:talk/ui/components/bnb.dart';
-import 'package:talk/ui/components/fab.dart';
-import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/strings.dart';
 import 'chats_viewmodel.dart';
@@ -16,24 +13,20 @@ class ChatsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<ChatsViewModel>();
-    // vm.getChats();
-    return Scaffold(
-      backgroundColor: CustomColors.backgroundColor,
-      bottomNavigationBar: const CustomBottomNavigationBar(),
-      floatingActionButton: ExtendedFloatingActionButton(vm: vm),
-      body: NestedScrollView(
-          floatHeaderSlivers: true,
-          headerSliverBuilder: (context, innerBoxIsScrolled) =>
-              [getSliverAppBar(context)],
-          body: ValueListenableBuilder(
-            valueListenable: vm.chats,
-            builder: (BuildContext context, value, Widget? child) {
-              if (vm.hasMessages()) {
-                return getList(vm);
-              }
-              return getEmptyListImage(context);
-            },
-          )),
+    vm.getChats();
+    return NestedScrollView(
+      floatHeaderSlivers: true,
+      headerSliverBuilder: (context, innerBoxIsScrolled) =>
+          [getSliverAppBar(context)],
+      body: ValueListenableBuilder(
+        valueListenable: vm.chats,
+        builder: (BuildContext context, value, Widget? child) {
+          if (vm.hasMessages()) {
+            return getList(vm);
+          }
+          return getEmptyListImage(context);
+        },
+      ),
     );
   }
 }
