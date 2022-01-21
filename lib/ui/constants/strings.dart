@@ -10,8 +10,6 @@ class Strings {
 
   // ChatsScreen
   static const chats = "Conversas";
-  static const events = "Eventos";
-  static const search = "Pesquisar";
   static const noMessages = "Nenhum registro de conversa recente";
 
   // UsernameScreen
@@ -20,7 +18,12 @@ class Strings {
   static const usernameIsInvalid = "Este username é inválido!";
 
   // EventsScreen
+  static const events = "Eventos";
   static const noEvents = "Nenhum evento registrado";
+
+  // SearchScreen
+  static const search = "Pesquisar";
+  static const noResults = "Nenhum resultado encontrado";
 
   static String getWelcomeMessage(String name) {
     return "Bem vindo, $name! 🎊 \nPor favor digite o seu nome de usuário:";

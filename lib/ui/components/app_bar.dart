@@ -54,3 +54,24 @@ SliverAppBar getSliverAppBar(BuildContext context) {
     ],
   );
 }
+
+SliverAppBar getSearchSliverAppBar(BuildContext context) {
+  return const SliverAppBar(
+    floating: true,
+    backwardsCompatibility: false,
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarColor: CustomColors.backgroundColor,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+    backgroundColor: CustomColors.backgroundColor,
+    actions: [
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: Dimens.screenPadding),
+        child: Icon(
+          Icons.close,
+          color: CustomColors.customBlack,
+        ),
+      )
+    ],
+  );
+}
