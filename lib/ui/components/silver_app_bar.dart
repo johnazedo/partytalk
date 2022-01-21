@@ -5,7 +5,7 @@ import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/styles.dart';
 import 'avatar/avatar.dart';
 
-SliverAppBar getSliverAppBar(BuildContext context, String title) {
+SliverAppBar getSliverAppBar(BuildContext context, {String? title}) {
   return SliverAppBar(
     floating: true,
     backwardsCompatibility: false,
@@ -14,10 +14,10 @@ SliverAppBar getSliverAppBar(BuildContext context, String title) {
       statusBarIconBrightness: Brightness.dark,
     ),
     backgroundColor: CustomColors.backgroundColor,
-    title: Text(
+    title: title != null ? Text(
       title,
       style: TextStyles.titleApp,
-    ),
+    ) : Container(),
     actions: const [
       Padding(
         padding: EdgeInsets.symmetric(horizontal: Dimens.screenPadding),

@@ -11,6 +11,7 @@ import 'di/avatar_factory.dart';
 import 'di/chats_factory.dart';
 import 'package:talk/ui/screens/home_screen.dart';
 import 'package:talk/ui/screens/search/search_screen.dart';
+import 'di/username_factory.dart';
 import 'ui/screens/username/username_screen.dart';
 
 Future<void> main() async {

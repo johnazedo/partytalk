@@ -16,7 +16,7 @@ class EventsScreen extends StatelessWidget {
     return NestedScrollView(
       floatHeaderSlivers: true,
       headerSliverBuilder: (context, innerBoxIsScrolled) =>
-          [getSliverAppBar(context, Strings.events)],
+          [getSliverAppBar(context, title: Strings.events)],
       body: ValueListenableBuilder(
         valueListenable: vm.events,
         builder: (BuildContext context, value, Widget? child) {

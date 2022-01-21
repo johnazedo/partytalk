@@ -17,7 +17,7 @@ class ChatsScreen extends StatelessWidget {
     return NestedScrollView(
       floatHeaderSlivers: true,
       headerSliverBuilder: (context, innerBoxIsScrolled) =>
-          [getSliverAppBar(context, Strings.chats)],
+          [getSliverAppBar(context, title: Strings.chats)],
       body: ValueListenableBuilder(
         valueListenable: vm.chats,
         builder: (BuildContext context, value, Widget? child) {

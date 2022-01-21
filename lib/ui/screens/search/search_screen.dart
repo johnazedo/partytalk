@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talk/ui/components/app_bar.dart';
+import 'package:talk/ui/components/silver_app_bar.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/screens/search/components/search_field.dart';
 import 'package:talk/ui/screens/search/components/search_result_list.dart';
@@ -13,7 +13,7 @@ class SearchScreen extends StatelessWidget {
       backgroundColor: CustomColors.backgroundColor,
       body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) =>
-              [getSearchSliverAppBar(context)],
+              [getSliverAppBar(context)],
           body: Column(
             children: [
               Container(
