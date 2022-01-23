@@ -6,6 +6,7 @@ class CustomColors {
   static const backgroundColor = Color(0xFFFFFFFF);
   static const solidGray = Color(0xFFCECECE);
   static const accentGray = Color(0xFFF8F7FC);
+  static const darkGrey = Color(0xFF5C656A);
   static const solidBlack = Color(0xFF000000);
   static const lightBlack = Color(0x99000000);
   static const customBlack = Color(0xFF263238);
