@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:talk/ui/components/drawer/drawer.dart';
 import 'package:talk/ui/components/fab.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/strings.dart';
@@ -43,6 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+      endDrawer: const CustomDrawer(),
+      endDrawerEnableOpenDragGesture: false,
     );
   }
 
