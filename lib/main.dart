@@ -43,7 +43,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AvatarViewModelFactory.make()),
         ChangeNotifierProvider(create: (_) => EventsViewModelFactory.make()),
         ChangeNotifierProvider(create: (_) => MessageViewModelFactory.make()),
-        ChangeNotifierProvider(create: (_) => MessageBottomBarViewModelFactory.make())
+        ChangeNotifierProvider(create: (_) => MessageBottomBarViewModelFactory.make()),
+        ChangeNotifierProvider(
+            create: (_) => EventParticipantsViewModelFactory.make())
       ],
       child: MaterialApp(
           title: Strings.appName,
