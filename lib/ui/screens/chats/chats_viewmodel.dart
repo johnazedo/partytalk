@@ -1,31 +1,24 @@
-
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:talk/domain/entities/chat.dart';
+import 'package:talk/domain/usecases/list_chat.dart';
 import 'chat_uimodel.dart';
 
 class ChatsViewModel extends ChangeNotifier {
 
-  var chats = ValueNotifier<List<ChatUIModel>>([]);
+  final ListChatUseCase listChatUseCase;
+  ChatsViewModel({required this.listChatUseCase}){
+    listenChat();
+  }
 
-  void getChats() {
-    chats.value = [
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("Luis Filipe Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("Luis Filipe Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("Luis Filipe Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("Luis Filipe Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-      ChatUIModel("João Pedro Limão", "Apenas um teste!", 4, "9:50", "assets/images/avatar.jpg"),
-    ];
+  var chats = ValueNotifier<List<Chat>>([]);
+
+  void listenChat(){
+    final stream = listChatUseCase("jplimao12@gmail.com");
+    stream.listen((listOfChats) {
+      chats.value = listOfChats;
+      notifyListeners();
+    });
   }
 
   int getChatListSize() {
@@ -39,5 +32,4 @@ class ChatsViewModel extends ChangeNotifier {
   bool isLastItem(int index){
     return getChatListSize() - 1 == index;
   }
-
 }

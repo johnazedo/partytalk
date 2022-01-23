@@ -5,7 +5,9 @@ import 'package:talk/ui/screens/events/events_viewmodel.dart';
 abstract class EventsViewModelFactory {
   static EventsViewModel make() {
     return EventsViewModel(
-        listEventUseCase:
-            ListEventUseCaseImpl(eventRepository: EventRepositoryMockImpl()));
+      listEventUseCase: ListEventUseCaseImpl(
+        eventRepository: EventRepositoryMockImpl(),
+      ),
+    );
   }
 }

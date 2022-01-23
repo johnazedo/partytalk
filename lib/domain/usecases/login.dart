@@ -1,5 +1,5 @@
-import 'package:talk/domain/repositories/auth_repository.dart';
-import 'package:talk/domain/repositories/user_repository.dart';
+import 'package:talk/domain/repositories/auth_repo.dart';
+import 'package:talk/domain/repositories/user_repo.dart';
 
 abstract class LoginUseCase {
   Future<bool> call();

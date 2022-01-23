@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/src/provider.dart';
-import 'package:talk/ui/components/app_bar.dart';
+import 'package:talk/ui/components/silver_app_bar.dart';
 import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/strings.dart';
 import 'chats_viewmodel.dart';
@@ -13,11 +13,10 @@ class ChatsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<ChatsViewModel>();
-    vm.getChats();
     return NestedScrollView(
       floatHeaderSlivers: true,
       headerSliverBuilder: (context, innerBoxIsScrolled) =>
-          [getSliverAppBar(context)],
+          [getSliverAppBar(context, title: Strings.chats)],
       body: ValueListenableBuilder(
         valueListenable: vm.chats,
         builder: (BuildContext context, value, Widget? child) {
@@ -60,7 +59,7 @@ ListView getList(ChatsViewModel vm) {
       return Padding(
         padding: EdgeInsets.only(bottom: vm.isLastItem(index) ? 60.0 : 0.0),
         child: ChatItem(
-          chatUIModel: vm.chats.value[index],
+          chat: vm.chats.value[index],
         ),
       );
     },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/src/provider.dart';
-import 'package:talk/ui/components/app_bar.dart';
+import 'package:talk/ui/components/silver_app_bar.dart';
 import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/strings.dart';
 import 'package:talk/ui/screens/events/components/event_item.dart';
@@ -16,7 +16,7 @@ class EventsScreen extends StatelessWidget {
     return NestedScrollView(
       floatHeaderSlivers: true,
       headerSliverBuilder: (context, innerBoxIsScrolled) =>
-          [getSliverAppBar(context)],
+          [getSliverAppBar(context, title: Strings.events)],
       body: ValueListenableBuilder(
         valueListenable: vm.events,
         builder: (BuildContext context, value, Widget? child) {
