@@ -8,6 +8,12 @@ class TextStyles {
     color: CustomColors.customBlack,
   );
 
+  static const messageTitleApp = TextStyle(
+    fontSize: 20.0,
+    fontWeight: FontWeight.w600,
+    color: CustomColors.customBlack,
+  );
+
   static const descriptionApp = TextStyle(
     fontSize: 20.0,
     fontWeight: FontWeight.w500,
@@ -34,7 +40,13 @@ class TextStyles {
 
   static const topMessageText = TextStyle(
     fontSize: 20.0,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.bold,
     color: CustomColors.customBlack
+  );
+
+  static const messageText = TextStyle(
+    fontSize: 16.0,
+    fontWeight: FontWeight.w600,
+      color: CustomColors.customBlack
   );
 }

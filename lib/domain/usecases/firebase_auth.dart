@@ -5,6 +5,7 @@ abstract class FirebaseAuthUseCase {
   entities.User? getUser(String username);
   String? getDisplayName();
   String? getProfileImage();
+  String? getEmail();
 }
 
 class FirebaseAuthUseCaseImpl implements FirebaseAuthUseCase {
@@ -20,6 +21,11 @@ class FirebaseAuthUseCaseImpl implements FirebaseAuthUseCase {
   @override
   String? getProfileImage() {
     return firebaseAuth.currentUser?.photoURL;
+  }
+
+  @override
+  String? getEmail(){
+    return firebaseAuth.currentUser?.email;
   }
 
   @override

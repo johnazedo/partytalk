@@ -1,20 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:talk/domain/entities/chat.dart';
+import 'package:talk/domain/usecases/firebase_auth.dart';
 import 'package:talk/domain/usecases/list_chat.dart';
 import 'chat_uimodel.dart';
 
 class ChatsViewModel extends ChangeNotifier {
 
   final ListChatUseCase listChatUseCase;
-  ChatsViewModel({required this.listChatUseCase}){
+  final FirebaseAuthUseCase firebaseAuthUseCase;
+
+  ChatsViewModel({required this.listChatUseCase, required this.firebaseAuthUseCase}){
     listenChat();
   }
 
   var chats = ValueNotifier<List<Chat>>([]);
 
   void listenChat(){
-    final stream = listChatUseCase("jplimao12@gmail.com");
+    final userEmail = firebaseAuthUseCase.getEmail();
+    final stream = listChatUseCase(userEmail!);
     stream.listen((listOfChats) {
       chats.value = listOfChats;
       notifyListeners();
