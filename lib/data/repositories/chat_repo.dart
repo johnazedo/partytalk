@@ -12,21 +12,39 @@ class ChatRepositoryImpl implements ChatRepository {
   ChatRepositoryImpl({required this.chatService, required this.userService});
 
   @override
-  Stream<QuerySnapshot<Map<String, dynamic>>> fetchChats(String userEmail) {
-    return FirebaseFirestore.instance
+  Stream<List<Chat>> fetchChats(String userEmail) {
+    final snapshots = FirebaseFirestore.instance
         .collection("users")
         .doc(userEmail)
         .collection("chats")
         .snapshots();
+
+    return snapshots.map(
+      (querySnapshot) => querySnapshot.docs
+          .map(
+            (docSnapshot) => ChatFactory.make(
+              docSnapshot.id,
+              ChatResponse.fromJSON(
+                docSnapshot.data(),
+              ),
+            ),
+          )
+          .toList(),
+    );
   }
 }
 
 abstract class ChatFactory {
   static Chat make(String documentID, ChatResponse response){
-    return Chat(id: documentID, title: response.title, lastMessage: response.lastMessage, time: formatTimestamp(response.timeLastMessage));
+    return Chat(
+        id: documentID,
+        title: response.title,
+        lastMessage: response.lastMessage,
+        photoURL: response.photoURL,
+        time: formatTimestamp(response.timeLastMessage));
   }
 
-  static String formatTimestamp(Timestamp timestamp){
+  static String formatTimestamp(Timestamp timestamp) {
     return "${timestamp.toDate().hour}:${timestamp.toDate().minute}";
   }
 }

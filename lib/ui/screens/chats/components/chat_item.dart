@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:talk/domain/entities/chat.dart';
 import 'package:talk/ui/constants/styles.dart';
-import 'package:talk/ui/screens/chats/chat_uimodel.dart';
 import 'chat_badge.dart';
 
 class ChatItem extends StatelessWidget {
-  final ChatUIModel chat;
+  final Chat chat;
 
   const ChatItem({Key? key, required this.chat}) : super(key: key);
 
@@ -17,8 +17,7 @@ class ChatItem extends StatelessWidget {
           child: Row(
             children: [
               CircleAvatar(
-                backgroundImage: AssetImage(
-                    chat.photoUrl ?? "assets/images/avatar.jpg"),
+                backgroundImage: getImage(chat.photoURL),
                 maxRadius: 30,
               ),
               const SizedBox(
@@ -31,11 +30,11 @@ class ChatItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          chat.personName,
+                          chat.title,
                           style: TextStyles.focusText,
                         ),
                         Text(
-                          "${chat.date.toDate().hour}:${chat.date.toDate().minute}",
+                          chat.time,
                           style: TextStyles.hintText,
                         )
                       ],
@@ -48,9 +47,9 @@ class ChatItem extends StatelessWidget {
                           style: TextStyles.hintText,
                         ),
                         Visibility(
-                          visible: chat.amountMessage>0,
+                          visible: chat.noReadMessageAmount>0,
                           child: AmountMessageBadge(
-                              text: chat.amountMessage.toString()
+                              text: chat.noReadMessageAmount.toString()
                           ),
                         ),
                       ],
@@ -63,3 +62,11 @@ class ChatItem extends StatelessWidget {
         ));
   }
 }
+
+ImageProvider getImage(String? photoURL) {
+  if(photoURL == null){
+    return const AssetImage("assets/images/avatar.jpg");
+  }
+  return NetworkImage(photoURL);
+}
+

@@ -13,7 +13,6 @@ class ChatsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<ChatsViewModel>();
-    // vm.getChats();
     return NestedScrollView(
       floatHeaderSlivers: true,
       headerSliverBuilder: (context, innerBoxIsScrolled) =>

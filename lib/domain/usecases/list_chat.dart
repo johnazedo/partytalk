@@ -1,11 +1,8 @@
-
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:talk/domain/entities/chat.dart';
 import 'package:talk/domain/repositories/chat_repo.dart';
 
 abstract class ListChatUseCase {
-  Stream<QuerySnapshot<Map<String, dynamic>>> call(String userEmail);
+  Stream<List<Chat>> call(String userEmail);
 }
 
 class ListChatUseCaseImpl implements ListChatUseCase {
@@ -14,8 +11,7 @@ class ListChatUseCaseImpl implements ListChatUseCase {
   ListChatUseCaseImpl({required this.chatRepository});
 
   @override
-  Stream<QuerySnapshot<Map<String, dynamic>>> call(String userEmail) {
+  Stream<List<Chat>> call(String userEmail) {
     return chatRepository.fetchChats(userEmail);
   }
-
 }

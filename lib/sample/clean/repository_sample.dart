@@ -13,17 +13,6 @@ class RepositoryImpl implements Repository {
         .collection("chats")
         .snapshots();
 
-
-    snapshots.listen((querySnapshot) {
-      documentsReference = [];
-      print("Testing");
-      querySnapshot.docChanges.forEach((element) {
-        documentsReference.add(element.doc.get("ref"));
-      });
-    });
-
-    print("Testing 2");
-
     yield documentsReference;
   }
 }

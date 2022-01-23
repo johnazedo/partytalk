@@ -6,5 +6,5 @@ class Chat {
   String? photoURL;
   int noReadMessageAmount = 0;
 
-  Chat({required this.id, required this.title, required this.lastMessage, required this.time});
+  Chat({required this.id, required this.title, required this.lastMessage, required this.time, this.photoURL});
 }
