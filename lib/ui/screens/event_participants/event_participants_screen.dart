@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
-import 'package:talk/domain/entities/user.dart';
-import 'package:talk/ui/components/app_bar.dart';
+import 'package:talk/ui/components/silver_app_bar.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/strings.dart';
@@ -32,7 +31,7 @@ class _EventParticipantsScreenState extends State<EventParticipantsScreen> {
         body: NestedScrollView(
             floatHeaderSlivers: true,
             headerSliverBuilder: (context, innerBoxIsScrolled) =>
-                [getSliverAppBar(context, vm.eventName)],
+                [getSliverAppBar(context, title: vm.eventName)],
             body: FutureBuilder(
                 future: vm.getUsersOrderly(),
                 builder: (ctx, snapShot) {
