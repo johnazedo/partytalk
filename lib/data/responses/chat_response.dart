@@ -1,7 +1,4 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:talk/domain/entities/user.dart';
 
 class ChatResponse {
   late String lastMessage;

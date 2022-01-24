@@ -6,7 +6,8 @@ import 'package:talk/ui/constants/strings.dart';
 import 'message_bottom_bar_viewmodel.dart';
 
 class MessageBottomBar extends StatefulWidget {
-  const MessageBottomBar({Key? key}) : super(key: key);
+  final String emailAddressee;
+  const MessageBottomBar({Key? key, required this.emailAddressee}) : super(key: key);
 
   @override
   _MessageBottomBarState createState() => _MessageBottomBarState();
@@ -47,7 +48,9 @@ class _MessageBottomBarState extends State<MessageBottomBar> {
                     icon: const Icon(Icons.send_sharp),
                     color: CustomColors.darkSecondaryColor,
                     onPressed: (){
-                      vm.sendMessage(controller.text);
+                      vm.sendMessage(controller.text, widget.emailAddressee);
+                      controller.text = '';
+                      vm.changeVisibilitySendButton(controller.text);
                     },
                   ),
                 ),

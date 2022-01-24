@@ -35,10 +35,10 @@ class ChatRepositoryImpl implements ChatRepository {
         .doc(userEmail)
         .collection("chats")
         .doc(chatID)
-        .collection("message")
+        .collection("message").orderBy('time')
         .snapshots();
 
-    return snapshots.map(
+    var snap =  snapshots.map(
       (querySnapshot) => querySnapshot.docs
           .map(
             (docSnapshot) => MessageFactory.make(
@@ -48,8 +48,10 @@ class ChatRepositoryImpl implements ChatRepository {
               ),
             ),
           )
-          .toList(),
+          .toList()
     );
+
+    return snap;
   }
 
   @override
@@ -59,8 +61,8 @@ class ChatRepositoryImpl implements ChatRepository {
     final addressee =
         FirebaseFirestore.instance.collection("users").doc(emailTo);
 
-    await saveMessageToMe(me, addressee, message);
-    await saveMessageToAddressee(me, addressee, message);
+    saveMessageToMe(me, addressee, message);
+    saveMessageToAddressee(me, addressee, message);
     return true;
   }
 
@@ -125,7 +127,7 @@ class ChatRepositoryImpl implements ChatRepository {
     }
 
     addressee.collection("chats").doc(chatId).collection("message").add({
-      'mine': message.mine,
+      'mine': !message.mine,
       'read': message.read,
       'text': message.text,
       'time': now,
@@ -140,7 +142,9 @@ abstract class ChatFactory {
         title: response.title,
         lastMessage: response.lastMessage,
         photoURL: response.photoURL,
-        time: formatTimestamp(response.timeLastMessage));
+        time: formatTimestamp(response.timeLastMessage),
+        addresseeEmail: response.addressee.id
+    );
   }
 
   static String formatTimestamp(Timestamp timestamp) {
