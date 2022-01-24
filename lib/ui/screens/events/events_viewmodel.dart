@@ -1,18 +1,23 @@
 import 'package:flutter/foundation.dart';
 import 'package:talk/domain/entities/event.dart';
+import 'package:talk/domain/usecases/firebase_auth.dart';
 import 'package:talk/domain/usecases/list_event.dart';
 
 class EventsViewModel extends ChangeNotifier {
   final ListEventUseCase listEventUseCase;
-  EventsViewModel({required this.listEventUseCase}) {
-    fetchEvents("");
+  final FirebaseAuthUseCase firebaseAuthUseCase;
+  EventsViewModel({required this.listEventUseCase, required this.firebaseAuthUseCase}) {
+    fetchEvents();
   }
 
   var events = ValueNotifier<List<Event>>([]);
 
-  void fetchEvents(String name) {
-    events.value = listEventUseCase.call(name);
-    notifyListeners();
+  void fetchEvents() async {
+    final email = firebaseAuthUseCase.getEmail();
+    if(email != null){
+      events.value = await listEventUseCase(email);
+      notifyListeners();
+    }
   }
 
   int getEventListSize() {

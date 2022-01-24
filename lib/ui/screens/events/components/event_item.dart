@@ -16,7 +16,7 @@ class EventItem extends StatelessWidget {
             children: [
               CircleAvatar(
                 backgroundImage:
-                    AssetImage(event.photoURL ?? "assets/images/avatar.jpg"),
+                    getImage(event.photoURL),
                 maxRadius: 30,
               ),
               const SizedBox(
@@ -50,3 +50,11 @@ class EventItem extends StatelessWidget {
         ));
   }
 }
+
+ImageProvider getImage(String? photoURL) {
+  if (photoURL == null) {
+    return const AssetImage("assets/images/avatar.jpg");
+  }
+  return NetworkImage(photoURL);
+}
+
