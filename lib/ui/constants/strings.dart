@@ -18,6 +18,10 @@ class Strings {
   static const usernameIsUnavailable = "Este username já está sendo usado!";
   static const usernameIsInvalid = "Este username é inválido!";
 
+  // EventPaticipantsScreen
+  static const emptyContacts = "Sem contatos no evento";
+  static const error = "erro";
+
   // EventsScreen
   static const events = "Eventos";
   static const noEvents = "Nenhum evento registrado";

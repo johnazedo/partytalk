@@ -49,4 +49,20 @@ class TextStyles {
     fontWeight: FontWeight.w600,
       color: CustomColors.customBlack
   );
+  static const subTitle1 = TextStyle(
+      fontSize: 20.0,
+      fontWeight: FontWeight.w700,
+      color: CustomColors.customBlack);
+
+  static const headLine1 = TextStyle(
+      fontSize: 20.0,
+      fontWeight: FontWeight.w700,
+      letterSpacing: 0.15,
+      color: CustomColors.customBlack);
+
+  static const body1 = TextStyle(
+      fontSize: 14.0,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 0.25,
+      color: CustomColors.darkGrey);
 }

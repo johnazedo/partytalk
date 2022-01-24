@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/strings.dart';
 import 'package:talk/di/events_factory.dart';
+import 'package:talk/ui/di/event_participants_factory.dart';
 import 'package:talk/ui/screens/auth/auth_screen.dart';
-import 'package:talk/ui/screens/messages/components/message_bottom_bar_viewmodel.dart';
 import 'package:talk/ui/screens/messages/message_screen.dart';
 import 'di/auth_factory.dart';
 import 'di/avatar_factory.dart';
@@ -43,7 +43,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AvatarViewModelFactory.make()),
         ChangeNotifierProvider(create: (_) => EventsViewModelFactory.make()),
         ChangeNotifierProvider(create: (_) => MessageViewModelFactory.make()),
-        ChangeNotifierProvider(create: (_) => MessageBottomBarViewModelFactory.make())
+        ChangeNotifierProvider(create: (_) => MessageBottomBarViewModelFactory.make()),
+        ChangeNotifierProvider(
+            create: (_) => EventParticipantsViewModelFactory.make())
       ],
       child: MaterialApp(
           title: Strings.appName,
