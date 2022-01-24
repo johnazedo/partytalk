@@ -11,6 +11,7 @@ class Strings {
   // ChatsScreen
   static const chats = "Conversas";
   static const noMessages = "Nenhum registro de conversa recente";
+  static const message = "Mensagem";
 
   // UsernameScreen
   static const createUser = "Criar usuário";

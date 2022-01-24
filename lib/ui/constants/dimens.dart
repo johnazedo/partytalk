@@ -7,5 +7,6 @@ class Dimens {
   static const buttonLabelPadding  = 16.0;
   static const buttonLabelSize = 16.0;
   static const bottomScreenToButtonPadding = 40.0;
+  static const messageCardBorderRadius = 20.0;
 
 }

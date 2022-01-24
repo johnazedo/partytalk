@@ -19,7 +19,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
 
   navigateToNext(BuildContext context, bool isUserCreated) {
     if(isUserCreated){
-      Navigator.of(context).popAndPushNamed("/chats");
+      Navigator.of(context).popAndPushNamed("/home");
     }
   }
 

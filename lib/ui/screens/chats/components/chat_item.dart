@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:talk/domain/entities/chat.dart';
+import 'package:talk/ui/constants/arguments.dart';
 import 'package:talk/ui/constants/styles.dart';
 import 'chat_badge.dart';
 
@@ -11,7 +12,16 @@ class ChatItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushNamed(
+            "/messages",
+            arguments: ChatToMessageArguments(
+                displayName: chat.title,
+                email: chat.addresseeEmail,
+                chatID: chat.id,
+                photoURL: chat.photoURL),
+          );
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Row(
@@ -47,10 +57,9 @@ class ChatItem extends StatelessWidget {
                           style: TextStyles.hintText,
                         ),
                         Visibility(
-                          visible: chat.noReadMessageAmount>0,
+                          visible: chat.noReadMessageAmount > 0,
                           child: AmountMessageBadge(
-                              text: chat.noReadMessageAmount.toString()
-                          ),
+                              text: chat.noReadMessageAmount.toString()),
                         ),
                       ],
                     )
@@ -64,9 +73,8 @@ class ChatItem extends StatelessWidget {
 }
 
 ImageProvider getImage(String? photoURL) {
-  if(photoURL == null){
+  if (photoURL == null) {
     return const AssetImage("assets/images/avatar.jpg");
   }
   return NetworkImage(photoURL);
 }
-
