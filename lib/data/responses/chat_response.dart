@@ -4,7 +4,7 @@ class ChatResponse {
   late String lastMessage;
   late String title;
   late String photoURL;
-  late DocumentReference addressee;
+  late String addressee;
   late Timestamp timeLastMessage;
 
   ChatResponse.fromJSON(Map<String, dynamic> json)
