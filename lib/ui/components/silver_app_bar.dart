@@ -26,3 +26,30 @@ SliverAppBar getSliverAppBar(BuildContext context, {String? title}) {
     ],
   );
 }
+
+SliverAppBar getSliverAppBarWithBackButton(BuildContext context, {String? title}) {
+  return SliverAppBar(
+    floating: true,
+    backwardsCompatibility: false,
+    systemOverlayStyle: const SystemUiOverlayStyle(
+      statusBarColor: CustomColors.backgroundColor,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+    leading: IconButton(
+      icon: const Icon(Icons.arrow_back_ios, color: CustomColors.customBlack),
+      onPressed: () => Navigator.of(context).pop(),
+    ),
+    backgroundColor: CustomColors.backgroundColor,
+    title: title != null ? Text(
+      title,
+      style: TextStyles.titleApp,
+    ) : Container(),
+    actions: const [
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: Dimens.screenPadding),
+        child: Avatar(),
+      )
+    ],
+  );
+}
+

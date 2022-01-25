@@ -61,8 +61,8 @@ class TextStyles {
       color: CustomColors.customBlack);
 
   static const body1 = TextStyle(
-      fontSize: 14.0,
-      fontWeight: FontWeight.w400,
+      fontSize: 16.0,
+      fontWeight: FontWeight.bold,
       letterSpacing: 0.25,
-      color: CustomColors.darkGrey);
+      color: CustomColors.secondaryColor);
 }

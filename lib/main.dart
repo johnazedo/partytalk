@@ -5,14 +5,15 @@ import 'package:provider/provider.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/strings.dart';
 import 'package:talk/di/events_factory.dart';
-import 'package:talk/ui/di/event_participants_factory.dart';
 import 'package:talk/ui/screens/auth/auth_screen.dart';
 import 'package:talk/ui/screens/messages/message_screen.dart';
+import 'package:talk/ui/screens/participants/participants_screen.dart';
 import 'di/auth_factory.dart';
 import 'di/avatar_factory.dart';
 import 'di/chats_factory.dart';
 import 'package:talk/ui/screens/home_screen.dart';
 import 'package:talk/ui/screens/search/search_screen.dart';
+import 'di/event_participants_factory.dart';
 import 'di/message_bottom_bar_factory.dart';
 import 'di/messages_factory.dart';
 import 'di/username_factory.dart';
@@ -44,8 +45,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => EventsViewModelFactory.make()),
         ChangeNotifierProvider(create: (_) => MessageViewModelFactory.make()),
         ChangeNotifierProvider(create: (_) => MessageBottomBarViewModelFactory.make()),
-        ChangeNotifierProvider(
-            create: (_) => EventParticipantsViewModelFactory.make())
+        ChangeNotifierProvider(create: (_) => EventParticipantsViewModelFactory.make())
+
       ],
       child: MaterialApp(
           title: Strings.appName,
@@ -64,7 +65,8 @@ class MyApp extends StatelessWidget {
             "/username": (context) => const UsernameScreen(),
             "/home": (context) => const HomeScreen(),
             "/search": (context) => const SearchScreen(),
-            "/messages": (context) => const MessageScreen()
+            "/messages": (context) => const MessageScreen(),
+            "/participants": (context) => const EventParticipantsScreen()
           }),
     );
   }

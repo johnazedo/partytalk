@@ -11,6 +11,6 @@ class ListEventUseCaseImpl implements ListEventUseCase {
 
   @override
   Future<List<Event>> call(String userEmail) async {
-    return eventRepository.fetchEvents(userEmail);
+    return await eventRepository.fetchEvents(userEmail);
   }
 }
