@@ -12,6 +12,7 @@ class ChatRepositoryImpl implements ChatRepository {
         .collection("users")
         .doc(userEmail)
         .collection("chats")
+        .orderBy("timeLastMessage", descending: true)
         .snapshots();
 
     return snapshots.map(
@@ -35,21 +36,20 @@ class ChatRepositoryImpl implements ChatRepository {
         .doc(userEmail)
         .collection("chats")
         .doc(chatID)
-        .collection("message").orderBy('time')
+        .collection("message")
+        .orderBy('time')
         .snapshots();
 
-    var snap =  snapshots.map(
-      (querySnapshot) => querySnapshot.docs
-          .map(
-            (docSnapshot) => MessageFactory.make(
-              docSnapshot.id,
-              MessageResponse.fromJSON(
-                docSnapshot.data(),
-              ),
+    var snap = snapshots.map((querySnapshot) => querySnapshot.docs
+        .map(
+          (docSnapshot) => MessageFactory.make(
+            docSnapshot.id,
+            MessageResponse.fromJSON(
+              docSnapshot.data(),
             ),
-          )
-          .toList()
-    );
+          ),
+        )
+        .toList());
 
     return snap;
   }
@@ -61,38 +61,26 @@ class ChatRepositoryImpl implements ChatRepository {
     final addressee =
         FirebaseFirestore.instance.collection("users").doc(emailTo);
 
-    saveMessageToMe(me, addressee, message);
+    await saveMessageToMe(me, addressee, message);
     saveMessageToAddressee(me, addressee, message);
     return true;
   }
 
   Future<void> saveMessageToMe(DocumentReference me,
       DocumentReference addressee, Message message) async {
-    final chat = await me
-        .collection("chats")
-        .where("addressee", isEqualTo: addressee)
-        .limit(1)
-        .get();
-    late String chatId;
+    final chat = me.collection("chats").doc(addressee.id);
     final user = await addressee.get();
     final now = Timestamp.now();
 
-    if (chat.docs.isEmpty) {
-      final photoURL = await user.get('photoURL');
-      final displayName = await user.get('name');
-      final docRef = await me.collection("chats").add({
-        'addressee': addressee,
-        'lastMessage': message.text,
-        'photoURL': photoURL,
-        'timeLastMessage': now,
-        'title': displayName
-      });
-      chatId = docRef.id;
-    } else {
-      chatId = chat.docs.first.id;
-    }
+    chat.set({
+      'addressee': addressee.id,
+      'lastMessage': message.text,
+      'photoURL': user.get('photoURL'),
+      'timeLastMessage': now,
+      'title': user.get('name')
+    });
 
-    me.collection("chats").doc(chatId).collection("message").add({
+    chat.collection("message").add({
       'mine': message.mine,
       'read': message.read,
       'text': message.text,
@@ -102,31 +90,19 @@ class ChatRepositoryImpl implements ChatRepository {
 
   Future<void> saveMessageToAddressee(DocumentReference me,
       DocumentReference addressee, Message message) async {
-    final chat = await addressee
-        .collection("chats")
-        .where("addressee", isEqualTo: me)
-        .limit(1)
-        .get();
-    late String chatId;
+    final chat = addressee.collection("chats").doc(me.id);
     final user = await me.get();
     final now = Timestamp.now();
 
-    if (chat.docs.isEmpty) {
-      final photoURL = await user.get('photoURL');
-      final displayName = await user.get('name');
-      final docRef = await addressee.collection("chats").add({
-        'addressee': me,
-        'lastMessage': message.text,
-        'photoURL': photoURL,
-        'timeLastMessage': now,
-        'title': displayName
-      });
-      chatId = docRef.id;
-    } else {
-      chatId = chat.docs.first.id;
-    }
+    chat.set({
+      'addressee': me.id,
+      'lastMessage': message.text,
+      'photoURL': user.get('photoURL'),
+      'timeLastMessage': now,
+      'title': user.get('name')
+    });
 
-    addressee.collection("chats").doc(chatId).collection("message").add({
+    chat.collection("message").add({
       'mine': !message.mine,
       'read': message.read,
       'text': message.text,
@@ -143,8 +119,7 @@ abstract class ChatFactory {
         lastMessage: response.lastMessage,
         photoURL: response.photoURL,
         time: formatTimestamp(response.timeLastMessage),
-        addresseeEmail: response.addressee.id
-    );
+        addresseeEmail: response.addressee);
   }
 
   static String formatTimestamp(Timestamp timestamp) {

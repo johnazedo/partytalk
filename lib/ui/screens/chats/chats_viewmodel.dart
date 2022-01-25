@@ -1,9 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:talk/domain/entities/chat.dart';
 import 'package:talk/domain/usecases/firebase_auth.dart';
 import 'package:talk/domain/usecases/list_chat.dart';
-import 'chat_uimodel.dart';
 
 class ChatsViewModel extends ChangeNotifier {
 

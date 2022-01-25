@@ -15,10 +15,9 @@ class ChatItem extends StatelessWidget {
         onTap: () {
           Navigator.of(context).pushNamed(
             "/messages",
-            arguments: ChatToMessageArguments(
+            arguments: ToMessageArguments(
                 displayName: chat.title,
                 email: chat.addresseeEmail,
-                chatID: chat.id,
                 photoURL: chat.photoURL),
           );
         },
@@ -39,9 +38,13 @@ class ChatItem extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          chat.title,
-                          style: TextStyles.focusText,
+                        Expanded(
+                          child: Text(
+                            chat.title,
+                            style: TextStyles.focusText,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                         Text(
                           chat.time,
@@ -52,9 +55,13 @@ class ChatItem extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          chat.lastMessage,
-                          style: TextStyles.hintText,
+                        Expanded(
+                          child: Text(
+                            chat.lastMessage,
+                            style: TextStyles.hintText,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                         Visibility(
                           visible: chat.noReadMessageAmount > 0,

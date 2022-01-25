@@ -4,7 +4,9 @@ import 'package:provider/src/provider.dart';
 import 'package:talk/domain/entities/message.dart';
 import 'package:talk/ui/components/app_bar.dart';
 import 'package:talk/ui/constants/arguments.dart';
+import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/dimens.dart';
+import 'package:talk/ui/constants/styles.dart';
 import 'components/message_bottom_bar.dart';
 import 'components/message_item.dart';
 import 'message_viewmodel.dart';
@@ -15,9 +17,9 @@ class MessageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final args =
-        ModalRoute.of(context)!.settings.arguments as ChatToMessageArguments;
+        ModalRoute.of(context)!.settings.arguments as ToMessageArguments;
     final vm = context.watch<MessageViewModel>();
-    vm.listenStream(args.chatID);
+    vm.listenStream(args.email);
 
     return Container(
       decoration: const BoxDecoration(
@@ -34,6 +36,9 @@ class MessageScreen extends StatelessWidget {
               valueListenable: vm.messages,
               builder:
                   (BuildContext context, List<Message> value, Widget? child) {
+                if (vm.messages.value.isEmpty) {
+                  return noMessageWidget();
+                }
                 return Expanded(child: getMessageList(vm));
               },
             ),
@@ -56,5 +61,30 @@ ListView getMessageList(MessageViewModel vm) {
         message: vm.messages.value[index],
       );
     },
+  );
+}
+
+Widget noMessageWidget() {
+  return Expanded(
+    child: Column(
+      children: [
+        Card(
+          elevation: 0.0,
+          margin: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 16.0),
+          color: CustomColors.secondaryColor,
+          child: const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              "Mande uma mensagem para iniciar a conversa",
+              style: TextStyles.messageText,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+        ),
+        Expanded(child: Container()),
+      ],
+    ),
   );
 }

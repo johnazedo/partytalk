@@ -1,7 +1,6 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:talk/domain/entities/user.dart';
+import 'package:talk/ui/constants/arguments.dart';
 import 'package:talk/ui/constants/dimens.dart';
 import 'package:talk/ui/constants/styles.dart';
 
@@ -41,6 +40,14 @@ class _ContactsLetterItemState extends State<ContactsLetterItem> {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 3),
                 child: ListTile(
+                  onTap: () => Navigator.of(context).pushNamed(
+                    "/messages",
+                    arguments: ToMessageArguments(
+                      displayName: widget.users[index].name,
+                      email: widget.users[index].email,
+                      photoURL: widget.users[index].photoURL,
+                    ),
+                  ),
                   leading: Container(
                     width: 50,
                     height: 50,
@@ -57,10 +64,9 @@ class _ContactsLetterItemState extends State<ContactsLetterItem> {
                     style: TextStyles.headLine1,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-
                   ),
-                  subtitle:
-                      Text('@' + widget.users[index].username, style: TextStyles.body1),
+                  subtitle: Text('@' + widget.users[index].username,
+                      style: TextStyles.body1),
                 ),
               );
             },
