@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:talk/domain/entities/user.dart';
 import 'package:talk/ui/constants/dimens.dart';
@@ -39,14 +41,26 @@ class _ContactsLetterItemState extends State<ContactsLetterItem> {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 3),
                 child: ListTile(
-                  leading: CircleAvatar(
-                      backgroundImage: widget.users[index].photoURL != null
-                          ? AssetImage(widget.users[index].photoURL!)
-                          : null),
-                  title: Text(widget.users[index].name,
-                      style: TextStyles.headLine1),
+                  leading: Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: getImage(widget.users[index].photoURL),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  title: Text(
+                    widget.users[index].name,
+                    style: TextStyles.headLine1,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+
+                  ),
                   subtitle:
-                      Text(widget.users[index].email, style: TextStyles.body1),
+                      Text('@' + widget.users[index].username, style: TextStyles.body1),
                 ),
               );
             },
@@ -55,4 +69,11 @@ class _ContactsLetterItemState extends State<ContactsLetterItem> {
       ),
     );
   }
+}
+
+ImageProvider getImage(String? photoURL) {
+  if (photoURL == null) {
+    return const AssetImage("assets/images/avatar.jpg");
+  }
+  return NetworkImage(photoURL);
 }
