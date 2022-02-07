@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
                 .copyWith(secondary: CustomColors.secondaryColor),
             fontFamily: Strings.fontFamily,
           ),
-          initialRoute: "/",
+          initialRoute: FirebaseAuth.instance.currentUser == null ? "/" : "/home",
           routes: {
             "/": (context) => const AuthScreen(),
             "/username": (context) => const UsernameScreen(),
