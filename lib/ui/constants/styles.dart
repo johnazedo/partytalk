@@ -65,4 +65,13 @@ class TextStyles {
       fontWeight: FontWeight.bold,
       letterSpacing: 0.25,
       color: CustomColors.secondaryColor);
+
+  static const drawerUserEmail = TextStyle(
+    color: CustomColors.customBlack,
+  );
+
+  static const drawerMenuItem = TextStyle(
+    fontSize: 15.0,
+    color: CustomColors.customBlack,
+  );
 }

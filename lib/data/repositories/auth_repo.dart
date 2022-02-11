@@ -6,11 +6,17 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<UserCredential> signInWithGoogle() async {
     final GoogleSignInAccount? account = await GoogleSignIn().signIn();
-    final GoogleSignInAuthentication authentication = await account!.authentication;
+    final GoogleSignInAuthentication authentication =
+        await account!.authentication;
     final credential = GoogleAuthProvider.credential(
         accessToken: authentication.accessToken,
-        idToken: authentication.idToken
-    );
+        idToken: authentication.idToken);
     return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  @override
+  Future<void> signOutOfGoogle() async {
+    await FirebaseAuth.instance.signOut();
+    await GoogleSignIn().signOut();
   }
 }

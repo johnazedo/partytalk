@@ -14,15 +14,22 @@ SliverAppBar getSliverAppBar(BuildContext context, {String? title}) {
       statusBarIconBrightness: Brightness.dark,
     ),
     backgroundColor: CustomColors.backgroundColor,
-    title: title != null ? Text(
-      title,
-      style: TextStyles.titleApp,
-    ) : Container(),
-    actions: const [
+    title: title != null
+        ? Text(
+            title,
+            style: TextStyles.titleApp,
+          )
+        : Container(),
+    actions: [
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: Dimens.screenPadding),
-        child: Avatar(),
-      )
+        padding: const EdgeInsets.symmetric(horizontal: Dimens.screenPadding),
+        child: GestureDetector(
+          child: const Avatar(),
+          onTap: () {
+            Scaffold.of(context).openEndDrawer();
+          },
+        ),
+      ),
     ],
   );
 }

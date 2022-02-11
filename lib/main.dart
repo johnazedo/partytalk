@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:talk/di/drawer_factory.dart';
 import 'package:talk/ui/constants/colors.dart';
 import 'package:talk/ui/constants/strings.dart';
 import 'package:talk/di/events_factory.dart';
@@ -45,8 +46,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => EventsViewModelFactory.make()),
         ChangeNotifierProvider(create: (_) => MessageViewModelFactory.make()),
         ChangeNotifierProvider(create: (_) => MessageBottomBarViewModelFactory.make()),
-        ChangeNotifierProvider(create: (_) => EventParticipantsViewModelFactory.make())
-
+        ChangeNotifierProvider(create: (_) => EventParticipantsViewModelFactory.make()),
+        ChangeNotifierProvider(
+            create: (_) => CustomDrawerViewModelFactory.make()),
       ],
       child: MaterialApp(
           title: Strings.appName,
