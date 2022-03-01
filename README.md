@@ -1,6 +1,6 @@
 <img src="https://user-images.githubusercontent.com/19677206/156182212-4c5fb141-3def-4a91-9356-689d9311b347.png"/>
 
-PartyTalk is a app to instant messages using gmail for authentication. The context that app will be used are events, with the objective that participants can network without sharing any personal information. A differential that this app can offer is the possibility to create multiple accounts for a single user.
+PartyTalk is a app to instant messages using gmail for authentication. The context in which the application will be used is events, with the aim that participants can interact without sharing any personal information. A differential that this app can offer is the possibility to create multiple accounts for a single user.
 
 The PartyTalk MVP is going to use Firebase as a backend and Clean Architecture with MVVM for structure the project.
 
