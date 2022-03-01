@@ -39,6 +39,3 @@ UC05| As a user, I want to receive notification of messages sent to me
 UC06| As a user, I want to delete chats to manage this screen as I like it
 UC07| As a user, I want to delete my account
 
-## Calendar
-
-![Untitled](https://user-images.githubusercontent.com/19677206/145633190-0a121f76-8272-4643-971d-9ff43cffb938.png)
